@@ -53,6 +53,8 @@ use Ivi\Core\Collections\Vector;
 use Ivi\Core\Collections\HashMap;
 use Ivi\Core\Collections\HashSet;
 use Ivi\Core\Collections\Str;
+use Ivi\Core\Container\Container;
+use Ivi\Core\Debug\Debug;
 
 /* -------------------------------------------------------------------------- */
 /* Debugging Helpers                                                          */
@@ -427,31 +429,43 @@ if (!function_exists('config_path')) {
 if (!function_exists('module_asset')) {
     /**
      * Generate a public URL for a file inside a module's assets or public directory.
+     * By default, returns the full HTML tag for CSS/JS.
      *
      * Examples:
-     *   module_asset('Market/Core', 'softadastra-market.png');
-     *   → /modules/Market/Core/public/softadastra-market.png
+     *   module_asset('User/Core', 'assets/css/login.css');
+     *   → <link rel="stylesheet" href="/modules/User/Core/assets/css/login.css">
      *
-     *   module_asset('Market/Core', 'assets/css/style.css');
-     *   → /modules/Market/Core/assets/css/style.css
+     *   module_asset('User/Core', 'assets/js/login.js');
+     *   → <script src="/modules/User/Core/assets/js/login.js"></script>
      *
-     * @param  string  $module  Module name in the format "Vendor/Module"
-     * @param  string  $path    Path inside the module (assets/, public/, etc.)
-     * @return string           A web-accessible URL
+     * @param string $module
+     * @param string $path
+     * @param bool $tag If true, return HTML tag; else just URL
+     * @return string
      */
-    if (!function_exists('module_asset')) {
-        function module_asset(string $module, string $path): string
-        {
-            $modulePath = trim(str_replace('\\', '/', $module), '/');
-            $path = ltrim($path, '/'); // ex: 'softadastra-market.png' ou 'assets/css/style.css'
+    function module_asset(string $module, string $path, bool $tag = true): string
+    {
+        $modulePath = trim(str_replace('\\', '/', $module), '/');
+        $path = ltrim($path, '/');
 
-            // NE PAS préfixer par "public/" ici !
-            return function_exists('asset')
-                ? asset("modules/{$modulePath}/{$path}")
-                : "/modules/{$modulePath}/{$path}";
+        $url = function_exists('asset')
+            ? asset("modules/{$modulePath}/{$path}")
+            : "/modules/{$modulePath}/{$path}";
+
+        if (!$tag) {
+            return $url;
         }
+
+        // Détecte le type de fichier par extension
+        $ext = pathinfo($path, PATHINFO_EXTENSION);
+        return match (strtolower($ext)) {
+            'css' => '<link rel="stylesheet" href="' . $url . '">',
+            'js'  => '<script src="' . $url . '" defer></script>',
+            default => $url,
+        };
     }
 }
+
 
 if (!function_exists('module_view_path')) {
     /**
@@ -469,5 +483,238 @@ if (!function_exists('module_view_path')) {
     {
         $base = base_path("modules/" . trim(str_replace('\\', '/', $module), '/'));
         return "{$base}/views/" . ltrim($view, '/');
+    }
+}
+
+if (!function_exists('current_path')) {
+    /**
+     * Returns the current request path.
+     *
+     * Useful for comparing links to determine if they are active.
+     *
+     * @return string Current path (e.g., "/docs")
+     */
+    function current_path(): string
+    {
+        return (string) (parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH) ?: '/');
+    }
+}
+
+if (!function_exists('active_class')) {
+    /**
+     * Returns the "active" CSS class if the given link matches the current path.
+     *
+     * @param string $href The URL path to check
+     * @param string $class The CSS class to return when active (default: 'active')
+     * @return string 'active' if the link matches the current path, otherwise empty
+     */
+    function active_class(string $href, string $class = 'active'): string
+    {
+        $path = current_path();
+        if ($href === '/') {
+            return $path === '/' ? $class : '';
+        }
+        return str_starts_with($path, rtrim($href, '/')) ? $class : '';
+    }
+}
+
+if (!function_exists('spa_link')) {
+    /**
+     * Generates a SPA-ready anchor link (<a>).
+     *
+     * Internal links automatically get `data-spa` attribute for AJAX navigation.
+     * External links (absolute URLs, different domain) are left unchanged.
+     *
+     * @param string $href The link URL
+     * @param string $label The visible text of the link
+     * @param array $attrs Additional HTML attributes (e.g., 'class', 'id')
+     * @return string HTML anchor tag
+     */
+    function spa_link(string $href, string $label, array $attrs = []): string
+    {
+        // Detect external link
+        $parsed = parse_url($href);
+        $isExternal = isset($parsed['host'])
+            || str_starts_with($href, 'http')
+            || str_starts_with($href, '//');
+
+        // Internal link: add SPA attribute
+        if (!$isExternal) {
+            $attrs['data-spa'] = 'true';
+
+            // Ensure class attribute exists
+            if (!isset($attrs['class'])) {
+                $attrs['class'] = 'nav-link';
+            } else {
+                $attrs['class'] .= ' nav-link';
+            }
+        }
+
+        // Build attributes
+        $attrString = '';
+        foreach ($attrs as $k => $v) {
+            $attrString .= sprintf(' %s="%s"', htmlspecialchars($k), htmlspecialchars((string)$v));
+        }
+
+        return sprintf(
+            '<a href="%s"%s>%s</a>',
+            htmlspecialchars($href),
+            $attrString,
+            htmlspecialchars($label)
+        );
+    }
+}
+
+if (!function_exists('menu')) {
+    /**
+     * Generates a full HTML menu (SPA-ready).
+     *
+     * Example:
+     * echo menu([
+     *     '/' => 'Home',
+     *     '/docs' => 'Docs',
+     *     '/guide' => 'Guide',
+     * ], ['class' => 'nav-links']);
+     *
+     * @param array $items ['href' => 'Label', ...] The menu items
+     * @param array $attrs Attributes for the container <nav> or <ul>
+     * @param bool $useList If true, outputs <ul><li>...</li></ul>; otherwise <nav>...</nav>
+     * @return string HTML of the menu
+     */
+    function menu(array $items, array $attrs = [], bool $useList = false): string
+    {
+        $attrString = '';
+        foreach ($attrs as $k => $v) $attrString .= sprintf(' %s="%s"', htmlspecialchars($k), htmlspecialchars((string)$v));
+
+        $html = $useList ? "<ul{$attrString}>" : "<nav{$attrString}>";
+        foreach ($items as $href => $label) {
+            $linkAttrs = ['data-spa' => true];
+            $html .= $useList ? "<li>" . spa_link($href, $label, $linkAttrs) . "</li>" : spa_link($href, $label, $linkAttrs);
+        }
+        $html .= $useList ? '</ul>' : '</nav>';
+        return $html;
+    }
+}
+
+if (!function_exists('config_value')) {
+    /**
+     * Global configuration accessor.
+     *
+     * Retrieves configuration values either from the DI container or
+     * the static Config system as fallback.
+     *
+     * Usage:
+     *   config_value('google');            // returns entire google.php array
+     *   config_value('google.client_id');  // returns specific key
+     *   config_value('google.foo', 'bar'); // returns default if key not set
+     *
+     * @param string|null $key Dot-notated key or null to get all
+     * @param mixed $default Default value if key is not found
+     * @return mixed
+     */
+    function config_value(?string $key = null, mixed $default = null): mixed
+    {
+        // 1) Try DI container first
+        if (function_exists('container')) {
+            try {
+                $c = container();
+
+                if (method_exists($c, 'has') && $c->has('config')) {
+                    $cfg = $c->get('config');
+
+                    if ($key === null && method_exists($cfg, 'all')) {
+                        return $cfg->all();
+                    }
+
+                    if ($key !== null && method_exists($cfg, 'get')) {
+                        return $cfg->get($key, $default);
+                    }
+                }
+            } catch (\Throwable $e) {
+                // silent fallback to static config
+            }
+        }
+
+        // 2) Static fallback
+        if ($key === null) {
+            return \Ivi\Core\Config\Config::all();
+        }
+
+        return \Ivi\Core\Config\Config::get($key, $default);
+    }
+}
+
+if (!function_exists('log_msg')) {
+    /**
+     * Global logging helper with console filtering.
+     *
+     * @param mixed       $value The data to log
+     * @param string|null $label Optional label
+     * @param string      $level One of: info, debug, warning, error
+     * @param bool        $json  Whether to log in JSON format
+     * @param bool        $trace Whether to include stack trace
+     */
+    function log_msg(
+        mixed $value,
+        ?string $label = null,
+        string $level = 'info',
+        bool $json = false,
+        bool $trace = false
+    ): void {
+        // Écrire dans le fichier
+        \Ivi\Core\Debug\Debug::log($value, $label, $level, $json, $trace);
+
+        // Filtrage console
+        $consoleMinLevel = 'info'; // 'debug', 'info', 'warning', 'error'
+        $levels = ['debug' => 1, 'info' => 2, 'warning' => 3, 'error' => 4];
+        if (PHP_SAPI === 'cli' && ($levels[strtolower($level)] ?? 2) >= ($levels[$consoleMinLevel] ?? 2)) {
+            // Afficher en console seulement si >= consoleMinLevel
+            $msg = $json ? json_encode($value, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) : print_r($value, true);
+            $labelStr = $label ? "[$label] " : '';
+            echo strtoupper($level) . " {$labelStr}{$msg}\n";
+        }
+    }
+}
+
+if (!function_exists('log_info')) {
+    function log_info(mixed $value, ?string $label = null): void
+    {
+        log_msg($value, $label, 'info');
+    }
+}
+
+if (!function_exists('log_debug')) {
+    function log_debug(mixed $value, ?string $label = null): void
+    {
+        log_msg($value, $label, 'debug');
+    }
+}
+
+if (!function_exists('log_warning')) {
+    function log_warning(mixed $value, ?string $label = null): void
+    {
+        log_msg($value, $label, 'warning');
+    }
+}
+
+if (!function_exists('log_error')) {
+    function log_error(mixed $value, ?string $label = null): void
+    {
+        log_msg($value, $label, 'error');
+    }
+}
+
+if (!function_exists('injectSpaScripts')) {
+    /**
+     * Injecte les scripts SPA pour une page.
+     *
+     * @param array $scripts Liste des URLs de scripts
+     */
+    function injectSpaScripts(array $scripts = [])
+    {
+        if (empty($scripts)) return;
+        foreach ($scripts as $src) {
+            echo '<script data-spa-script defer src="' . htmlspecialchars($src) . '"></script>' . PHP_EOL;
+        }
     }
 }
