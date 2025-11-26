@@ -1,7 +1,7 @@
 <p align="center" style="margin:0;">
   <img 
-    src="https://res.cloudinary.com/dwjbed2xb/image/upload/v1762524618/iviphp_jrpema.png" 
-    alt="Ivi.php Banner" 
+    src="https://res.cloudinary.com/dwjbed2xb/image/upload/v1762624307/softadastra_wnoab9.png" 
+    alt="Vix.cpp Banner" 
     width="100%" 
     style="
       display:block;
@@ -13,314 +13,126 @@
     ">
 </p>
 
-<h1 align="center">Blog</h1>
-
+<h1 align="center">🌍 Softadastra.com</h1>
 <p align="center">
-  <img src="https://img.shields.io/badge/PHP-8.2+-blue">
-  <img src="https://img.shields.io/badge/License-MIT-green">
+  <strong>The unified digital ecosystem for Africa — powering commerce, communication, and innovation.</strong><br>
+  Built with <a href="https://github.com/iviphp/ivi">Ivi.php</a> · Inspired by <a href="https://github.com/vixcpp/vix.cpp">Vix.cpp</a>
 </p>
 
-# 🟩 **Blog** — News, tutorials, and announcements (CMS powered by Ivi.php)..
+---
 
-> **“Code with clarity.”**  
-> Ivi.php is a modern PHP framework built for developers who value simplicity, speed, and expressive code.  
-> Its minimal core and clean structure make building APIs and web applications a joyful experience.
+## 🚀 Overview
+
+**Softadastra** is a **global African technology ecosystem** — connecting marketplaces, businesses, and developers under one platform.  
+From online shopping to real-time chat, business dashboards, and digital services, Softadastra brings everything together to build **Africa’s digital future**.
+
+🧭 **Mission:** Empower African commerce and innovation through fast, modern, and accessible technology.  
+💡 **Vision:** Become the leading African tech ecosystem — the bridge between people, markets, and technology.
 
 ---
 
-# 🚀 Getting Started
+## 🧩 Ecosystem Modules
 
-Welcome to **Ivi.php** — a lightweight, modern framework designed to help you build fast and elegant PHP applications.
-
-This guide will walk you through:
-
-- Bootstrapping a new project
-- Understanding the folder layout
-- Creating your first route, controller, and view
-- Connecting to a database with ease
-
----
-
-## Requirements
-
-- PHP **8.2+**
-- PDO + driver (e.g. `pdo_mysql` or `pdo_sqlite`)
-- Composer
-- Recommended: `php -S localhost:8000 -t public` for local dev
-
----
-
-## 1) Installation
-
-### A. Create a project
-
-```bash
-composer create-project iviphp/ivi my-app
-cd my-app
-```
-
-> If you cloned the repo directly, run `composer install`.
-
-### B. Project structure (overview)
-
-```bash
-.
-├─ bootstrap/          # app boot strap & helpers
-├─ config/             # app, routes, database config
-├─ core/               # ivi.php framework core (Bootstrap, Http, ORM, ...)
-├─ public/             # web root (index.php)
-├─ src/                # your application code (Controllers, Models, ...)
-├─ views/              # PHP templates
-├─ scripts/            # migrations, seeds, dev scripts
-├─ docs/               # documentation
-└─ vendor/
-```
+| Module           | Description                                                  | Status            |
+| ---------------- | ------------------------------------------------------------ | ----------------- |
+| 🛍️ **Market**    | Online marketplace for African sellers and buyers.           | ✅ Live           |
+| 🏪 **Business**  | Professional dashboards for vendors and stores.              | ✅ In beta        |
+| ⚙️ **Digital**   | B2B services: website creation, hosting & integration.       | ⚙️ Coming soon    |
+| 💬 **Chat**      | Real-time messaging between buyers and sellers.              | ⚙️ In development |
+| 🗺️ **Map**       | Interactive map of local shops and businesses.               | 🧭 Planned        |
+| 📰 **Blog**      | News, tutorials, and announcements (CMS powered by Ivi.php). | 🧭 Planned        |
+| ☁️ **Cloud**     | Decentralized storage and hosting platform.                  | 🧠 Concept phase  |
+| 💳 **Pay**       | Secure mobile payment and digital wallet system.             | 🔐 Planned        |
+| 🎓 **Academy**   | Educational platform for developers and entrepreneurs.       | 🏫 Upcoming       |
+| 📢 **Ads**       | Advertising and product promotion network for vendors.       | 🧭 Planned        |
+| 💼 **Works**     | Case studies, client projects, and professional portfolio.   | 🧱 Planned        |
+| 🧰 **Build**     | Developer resources, APIs, and SDKs.                         | ⚙️ Active         |
+| 🌐 **Solutions** | Enterprise-grade tailored solutions and integrations.        | 🏗️ In progress    |
+| 🤝 **Partner**   | Partnerships, resellers, and strategic alliances.            | 🤝 Planned        |
+| 🧍 **Workspace** | Internal collaboration and productivity tools.               | 🧩 Future         |
+| 🧠 **Labs**      | Research & innovation (AI, blockchain, distributed tech).    | 🔬 Ongoing        |
+| 🎨 **Studio**    | Design, branding, and creative experiences.                  | 🎨 Planned        |
+| 🧰 **Tech**      | Underlying technologies: Vix.cpp, Ivi.php, SoftadastraBox.   | ⚙️ Active         |
 
 ---
 
-## 2) First Run
+## ⚙️ Technology Stack
 
-Serve the app:
-
-```bash
-php -S localhost:8000 -t public
-```
-
-Open: <http://localhost:8000>
-
-You should see the default page or a basic route response (see next section).
-
----
-
-## 3) Routing
-
-Routes are declared in `config/routes.php`.
-
-```php
-<?php
-
-use Ivi\Router\Router;
-use App\Controllers\HomeController;
-use App\Controllers\User\UserController;
-
-/** @var Router $router */
-
-$router->get('/', function () {
-    return 'Hello ivi.php!';
-});
-
-$router->get('/users', [UserController::class, 'index']);
-$router->get('/users/{id}', [UserController::class, 'show']);
-```
+| Layer             | Technology                                                           |
+| ----------------- | -------------------------------------------------------------------- |
+| **Frontend**      | HTML, JS (custom SPA), CSS                                           |
+| **Backend**       | [Ivi.php](https://github.com/iviphp/ivi) — modern PHP framework      |
+| **Core Services** | [Vix.cpp](https://github.com/vixcpp/vix.cpp) — C++ backend framework |
+| **Realtime**      | Node.js + WebSocket                                                  |
+| **Database**      | MySQL, Redis                                                         |
+| **Architecture**  | Modular · Scalable · API-first                                       |
 
 ---
 
-## 4) Controllers
+## 💼 Business Divisions
 
-```php
-<?php
+Softadastra operates through multiple divisions under one vision:
 
-namespace App\Controllers;
-
-use Ivi\Http\Request;
-use Ivi\Http\HtmlResponse;
-
-final class HomeController extends Controller
-{
-    public function index(Request $request): HtmlResponse
-    {
-        return $this->view('home', [
-            'title' => 'Welcome to ivi.php',
-            'message' => 'Fast & expressive.',
-        ], $request);
-    }
-}
-```
-
----
-
-## 5) Views
-
-```php
-<!-- views/home.php -->
-<?php $this->layout('base', ['title' => $title ?? 'ivi.php']); ?>
-
-<section class="section container">
-  <h1><?= htmlspecialchars($title ?? 'Welcome') ?></h1>
-  <p><?= htmlspecialchars($message ?? '') ?></p>
-</section>
-```
-
-Layout example:
-
-```php
-<!-- views/base.php -->
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title><?= htmlspecialchars($title ?? 'ivi.php') ?></title>
-  <link href="<?= asset('assets/css/app.css') ?>" rel="stylesheet">
-  <?= $styles ?? '' ?>
-</head>
-<body>
-  <nav class="nav"><a href="/">ivi.php</a></nav>
-  <main><?= $this->section('content') ?></main>
-  <?= $scripts ?? '' ?>
-</body>
-</html>
-```
+| Division                  | Purpose                                            |
+| ------------------------- | -------------------------------------------------- |
+| **Softadastra Market**    | Connects African buyers and sellers                |
+| **Softadastra Business**  | Empowers entrepreneurs and SMEs                    |
+| **Softadastra Digital**   | Builds fast sites and backends for clients         |
+| **Softadastra Tech**      | Creates open-source frameworks                     |
+| **Softadastra Labs**      | Researches AI, Blockchain, and distributed systems |
+| **Softadastra Studio**    | Focuses on design, UI/UX, and creative content     |
+| **Softadastra Works**     | Showcases professional projects and case studies   |
+| **Softadastra Solutions** | Offers end-to-end enterprise integrations          |
+| **Softadastra Partner**   | Builds collaborations with businesses and agencies |
+| **Softadastra Academy**   | Trains the next generation of African developers   |
+| **Softadastra Cloud**     | Provides decentralized hosting and data storage    |
+| **Softadastra Pay**       | Enables local digital and mobile payments          |
+| **Softadastra Ads**       | Provides advertising and promotion tools           |
+| **Softadastra Build**     | Centralizes developer APIs and SDKs                |
+| **Softadastra Workspace** | Creates collaborative tools for teams              |
 
 ---
 
-## 6) Markdown Docs
+## 🌐 Official Links
 
-```php
-$router->get('/docs', [\App\Controllers\Docs\DocsController::class, 'index']);
-```
-
-View: `views/docs/page.php`
-
-```php
-<section class="docs-hero">
-  <div class="container">
-    <h1>Documentation</h1>
-    <p class="lead">Build fast and expressive apps with <strong>ivi.php</strong>.</p>
-  </div>
-</section>
-
-<main class="docs-content container markdown-body">
-  <?= $content ?>
-</main>
-```
-
----
-
-## 7) Environment & Config
-
-```ini
-APP_ENV=local
-APP_DEBUG=true
-DB_DRIVER=mysql
-DB_HOST=127.0.0.1
-DB_NAME=iviphp
-DB_USER=root
-DB_PASS=secret
-```
-
-```php
-return [
-  'default' => $_ENV['DB_DRIVER'] ?? 'mysql',
-  'connections' => [
-    'mysql' => [
-      'driver' => 'mysql',
-      'host' => $_ENV['DB_HOST'] ?? '127.0.0.1',
-      'database' => $_ENV['DB_NAME'] ?? 'iviphp',
-      'username' => $_ENV['DB_USER'] ?? 'root',
-      'password' => $_ENV['DB_PASS'] ?? '',
-    ],
-  ],
-];
-```
+| Resource              | URL                                                                    |
+| --------------------- | ---------------------------------------------------------------------- |
+| 🌍 Website            | [https://softadastra.com](https://softadastra.com)                     |
+| 🏪 Marketplace        | [https://softadastra.com/market](https://softadastra.com/market)       |
+| 💼 Business Dashboard | [https://softadastra.com/business](https://softadastra.com/business)   |
+| ⚙️ Digital Services   | [https://softadastra.com/digital](https://softadastra.com/digital)     |
+| 💬 Chat               | [https://softadastra.com/chat](https://softadastra.com/chat)           |
+| 🗺️ Map                | [https://softadastra.com/map](https://softadastra.com/map)             |
+| 📰 Blog               | [https://softadastra.com/blog](https://softadastra.com/blog)           |
+| 🧠 Labs               | [https://softadastra.com/labs](https://softadastra.com/labs)           |
+| ☁️ Cloud              | [https://softadastra.com/cloud](https://softadastra.com/cloud)         |
+| 💳 Pay                | [https://softadastra.com/pay](https://softadastra.com/pay)             |
+| 🎓 Academy            | [https://softadastra.com/academy](https://softadastra.com/academy)     |
+| 📢 Ads                | [https://softadastra.com/ads](https://softadastra.com/ads)             |
+| 💼 Works              | [https://softadastra.com/works](https://softadastra.com/works)         |
+| 🧰 Build              | [https://softadastra.com/build](https://softadastra.com/build)         |
+| 🌐 Solutions          | [https://softadastra.com/solutions](https://softadastra.com/solutions) |
+| 🤝 Partner            | [https://softadastra.com/partner](https://softadastra.com/partner)     |
+| 🧍 Workspace          | [https://softadastra.com/workspace](https://softadastra.com/workspace) |
 
 ---
 
-## 8) ORM Quickstart
+## 🧭 About Softadastra Group
 
-```php
-<?php
-
-namespace App\Models;
-
-use Ivi\Core\ORM\Model;
-
-final class User extends Model
-{
-    protected string $table = 'users';
-}
-```
-
-Usage:
-
-```php
-use App\Models\User;
-
-$user = User::create(['name' => 'Ada', 'email' => 'ada@example.com']);
-$found = User::find(1);
-$found->update(['name' => 'Ada Lovelace']);
-$found->delete();
-```
+**Softadastra Group** is an African-born tech organization building open, decentralized, and high-performance technologies for the continent’s digital future.  
+We believe Africa can lead the next wave of innovation — by building tools that are **fast, independent, and made locally.**
 
 ---
 
-## 9) Migrations CLI
+## ❤️ Join the Movement
 
-```bash
-php bin/ivi migrate
-php bin/ivi migrate:status
-php bin/ivi migrate:reset
-```
-
-Example SQL:
-
-```sql
-CREATE TABLE users (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(120),
-  email VARCHAR(190) UNIQUE
-);
-```
+- Follow us on [Twitter](https://x.com/Softadastra)
+- Star this repo 🌟 to support the African tech revolution
+- Contact us via [hello@softadastra.com](mailto:hello@softadastra.com)
 
 ---
 
-## 10) Validation
-
-```php
-use Ivi\Http\Request;
-use Ivi\Validation\Validator;
-
-$validator = Validator::make($request->all(), [
-  'name' => 'required|min:2|max:120',
-  'email' => 'required|email',
-]);
-
-if ($validator->fails()) {
-  return response()->json(['errors' => $validator->errors()], 422);
-}
-```
-
----
-
-## 11) Responses
-
-```php
-use Ivi\Http\JsonResponse;
-use Ivi\Http\HtmlResponse;
-
-return new JsonResponse(['ok' => true]);
-return new HtmlResponse('<h1>Hello</h1>');
-```
-
----
-
-## 12) Production Tips
-
-- Set `APP_ENV=production`
-- Use `APP_DEBUG=false`
-- Configure opcache
-- Serve from `public/`
-- Minify assets
-
----
-
-Happy building with **ivi.php** 🚀
-
-## ⚖️ License
-
-MIT License © 2025 [GaspardKirira Authors](https://github.com/GaspardKirira)  
-Use freely, modify openly, contribute boldly. 🚀
-
-# Test Packagist Hook
-
-- hook test Fri Nov 7 08:07:12 PM EAT 2025
-- packagist hook test
+<p align="center">
+  <strong>Softadastra — Building Africa’s Digital Future.</strong><br>
+  <sub>© 2025 Softadastra Group. All rights reserved.</sub>
+</p>

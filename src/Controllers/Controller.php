@@ -81,10 +81,18 @@ abstract class Controller
         self::$layoutVars[$key] = $value;
     }
 
-    /** Raccourci pratique pour le titre de page */
-    protected function setPageTitle(string $title): void
+    /**
+     * Shortcut to set the page title safely.
+     * 
+     * @param string|null $title Page title. If null, a default will be used.
+     */
+    protected function setPageTitle(?string $title): void
     {
-        $this->setLayoutVar('title', $title);
+        // fallback si null
+        $safeTitle = $title ?? 'Softadastra';
+
+        // assure que c'est bien une string
+        $this->setLayoutVar('title', (string)$safeTitle);
     }
 
     /**
@@ -112,7 +120,6 @@ abstract class Controller
         ?string $layoutOverride = null,
         int $status = 200
     ): HtmlResponse {
-        // au lieu de $filePath = $viewsDir . $this->dotToPath($path) . '.php';
         [$baseForView, $fileRel] = $this->resolveViewPath($path);
         $filePath = $baseForView . $fileRel;
 
@@ -120,38 +127,63 @@ abstract class Controller
             throw new ViewNotFoundException($filePath);
         }
 
+        // Capture HTML fragment content
         $content = $this->capture(function () use ($filePath, $params) {
-            if (is_array($params)) {
-                extract($params, EXTR_SKIP);
-            }
+            if (is_array($params)) extract($params, EXTR_SKIP);
             require $filePath;
         });
 
-        if ($this->isAjax($request)) {
-            return new HtmlResponse($content, $status);
+        $isAjax = $this->isAjax($request);
+        $isSPA  = ($params['spa'] ?? false);
+
+        /**
+         * 🚀 CASE 1: SPA + AJAX = return the fragment + title header
+         */
+        if ($isSPA && $isAjax) {
+            $pageTitle = self::$layoutVars['title']
+                ?? ($params['title'] ?? 'Softadastra');
+
+            $response = new HtmlResponse($content, $status);
+            $response->header('X-Page-Title', $pageTitle);
+
+            // 🔥 Ajout scripts SPA
+            if (!empty($params['spa_scripts'])) {
+                // spa_scripts = liste d’URL, pas de balises <script>
+                $response->header('X-Page-Scripts', json_encode($params['spa_scripts']));
+            }
+
+            return $response;
         }
 
+        /**
+         * 🚀 CASE 2: Normal page = wrap with the full layout
+         */
         $layout = $layoutOverride ?? $this->layout;
         $layoutPath = $this->viewsBasePath() . $layout;
+
         if (!is_file($layoutPath)) {
             return new HtmlResponse($content, $status);
         }
 
-        $full = $this->capture(function () use ($layoutPath, $content, $params) {
-            if (!empty(self::$layoutVars)) {
-                extract(self::$layoutVars, EXTR_OVERWRITE);
-            }
+        // Generate / ensure CSRF token for the layout (available in the view)
+        // Do not force regeneration here (false) to avoid unnecessary invalidation of tokens.
+        $__csrf_token = \Ivi\Core\Security\Csrf::generateToken(false);
 
-            if (is_array($params)) {
-                extract($params, EXTR_OVERWRITE);
-            }
+        // Capture the full layout — pass $__csrf_token into the closure via use
+        $full = $this->capture(function () use ($layoutPath, $content, $params, $__csrf_token) {
+            // Inject layout variables and params
+            $title = self::$layoutVars['title'] ?? ($params['title'] ?? 'Softadastra');
 
-            if (!isset($title) || $title === null || $title === '') {
-                $title = 'ivi.php';
-            }
+            if (!empty(self::$layoutVars)) extract(self::$layoutVars, EXTR_OVERWRITE);
+            if (is_array($params)) extract($params, EXTR_OVERWRITE);
 
+            // SPA flag for global JS (spa.js)
+            echo '<script>window.__SPA__ = true;</script>';
+
+            // The view/layout can now safely access $__csrf_token
             require $layoutPath;
         });
+
         return new HtmlResponse($full, $status);
     }
 
@@ -174,6 +206,13 @@ abstract class Controller
         ?Request $request = null,
         int $status = 200
     ): HtmlResponse {
+
+        // Active automatiquement le mode SPA pour les requêtes AJAX
+        if ($request && $this->isAjax($request)) {
+            $params = $params ?? [];
+            $params['spa'] = true;
+        }
+
         return $this->render($path, $params, $request, null, $status);
     }
 
@@ -284,7 +323,6 @@ abstract class Controller
         }
         return $out ?: '';
     }
-
 
     /** Enregistre un namespace de vues, ex: Controller::addViewNamespace('market', '/abs/path/to/views') */
     public static function addViewNamespace(string $ns, string $path): void
