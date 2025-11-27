@@ -19,13 +19,9 @@
         crossorigin="anonymous" />
 
     <!-- Global CSS -->
-    <link rel="stylesheet" href="<?= asset('assets/css/app.css') ?>">
-    <link rel="stylesheet" href="<?= asset('assets/css/modal.css') ?>">
-    <link rel="stylesheet" href="<?= asset('assets/css/allbootstrap.min.css') ?>">
-    <link rel="stylesheet" href="<?= asset('assets/css/select2.min.css') ?>">
-    <link rel="stylesheet" href="<?= asset('assets/js/jquery-3.6.0.min.js') ?>">
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="<?= asset('assets/css/header.css') ?>">
+    <link rel="stylesheet" href="<?= asset('assets/css/footer.css') ?>">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="..." crossorigin="anonymous">
 
     <!-- Page-level CSS -->
     <?= $styles ?? '' ?>
@@ -38,7 +34,9 @@
             document.documentElement.classList.add('dark');
         }
     </script>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <style>
+
+    </style>
 </head>
 
 <body class="bg-light text-dark font-sans">
@@ -65,9 +63,8 @@
     <?= $scripts ?? '' ?>
 
     <!-- Global JS -->
+    <script src="<?= asset('assets/js/header.js') ?>" defer></script>
     <script src="<?= asset('assets/js/spa.js') ?>" defer></script>
-    <script src="<?= asset('assets/js/app.js') ?>" defer></script>
-    <script src="<?= asset('assets/js/modal.js') ?>" defer></script>
 
     <!-- SPA toggle -->
     <script>
