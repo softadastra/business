@@ -1,150 +1,96 @@
 <template>
   <footer class="sa-footer">
-    <div class="sa-container sa-footer__inner">
-      <!-- Brand -->
-      <div class="sa-footer__brand">
-        <div class="sa-footer__logo" aria-hidden="true">
-          <span class="sa-footer__dot"></span>
+    <!-- Back to top -->
+    <button class="toTop" type="button" @click="scrollTop">Back to top</button>
+
+    <div class="sa-container">
+      <!-- Top links (Amazon-like) -->
+      <div class="grid">
+        <div class="col">
+          <div class="h">Get to know us</div>
+          <router-link class="l" to="/about">About</router-link>
+          <router-link class="l" to="/services">Services</router-link>
+          <router-link class="l" to="/pricing">Pricing</router-link>
+          <router-link class="l" to="/contact">Contact</router-link>
         </div>
 
-        <div class="sa-footer__brandText">
-          <div class="sa-footer__name">{{ site.brand.name }}</div>
-          <div class="sa-footer__tagline">
-            {{ site.brand.shortDescription }}
-          </div>
-
-          <div class="sa-footer__contact">
-            <a
-              class="sa-footer__contactLink"
-              :href="site.buildWhatsAppLink('general')"
-              target="_blank"
-              rel="noopener"
-            >
-              💬 WhatsApp
-            </a>
-
-            <span class="sep" aria-hidden="true">•</span>
-
-            <a class="sa-footer__contactLink" :href="emailHref"> ✉️ Email </a>
-          </div>
-
-          <div class="sa-footer__meta">
-            <span class="sa-footer__metaItem">{{ site.brand.location }}</span>
-            <span class="sep" aria-hidden="true">•</span>
-            <span class="sa-footer__metaItem">{{ hours }}</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Links -->
-      <div class="sa-footer__cols">
-        <div class="sa-footer__col">
-          <div class="sa-footer__colTitle">Navigate</div>
-          <RouterLink class="sa-footer__link" to="/services"
-            >Services</RouterLink
-          >
-          <RouterLink class="sa-footer__link" to="/pricing">Pricing</RouterLink>
-          <RouterLink class="sa-footer__link" to="/portfolio"
-            >Portfolio</RouterLink
-          >
-          <RouterLink class="sa-footer__link" to="/about">About</RouterLink>
-          <RouterLink class="sa-footer__link" to="/contact">Contact</RouterLink>
-        </div>
-
-        <div class="sa-footer__col">
-          <div class="sa-footer__colTitle">Business</div>
+        <div class="col">
+          <div class="h">Products</div>
           <a
-            class="sa-footer__link"
+            class="l"
+            href="https://softadastra.com"
+            target="_blank"
+            rel="noopener"
+            >Softadastra Market</a
+          >
+          <a
+            class="l"
+            href="https://softadastra.com/map"
+            target="_blank"
+            rel="noopener"
+            >Softadastra Map</a
+          >
+          <a
+            class="l"
+            href="https://softadastra.com/blog"
+            target="_blank"
+            rel="noopener"
+            >Blog</a
+          >
+        </div>
+
+        <div class="col">
+          <div class="h">Developer stack</div>
+          <a class="l" href="https://vixcpp.com" target="_blank" rel="noopener"
+            >Vix.cpp</a
+          >
+          <a
+            class="l"
+            href="https://github.com/iviphp/ivi"
+            target="_blank"
+            rel="noopener"
+            >Ivi.php</a
+          >
+          <a
+            class="l"
+            href="https://github.com/rixcpp/rix"
+            target="_blank"
+            rel="noopener"
+            >Rix</a
+          >
+        </div>
+
+        <div class="col">
+          <div class="h">Contact</div>
+          <a
+            class="l"
             :href="site.buildWhatsAppLink('general')"
             target="_blank"
             rel="noopener"
+            >WhatsApp</a
           >
-            Request a quote
-          </a>
-          <a
-            class="sa-footer__link"
-            :href="site.buildWhatsAppLink('offline_first')"
-            target="_blank"
-            rel="noopener"
-          >
-            Offline-first deployment
-          </a>
-          <a
-            class="sa-footer__link"
-            :href="site.buildWhatsAppLink('online')"
-            target="_blank"
-            rel="noopener"
-          >
-            Web platform / SaaS
-          </a>
-          <a
-            class="sa-footer__link"
-            :href="site.buildWhatsAppLink('mobile')"
-            target="_blank"
-            rel="noopener"
-          >
-            Mobile app (APK)
-          </a>
-        </div>
 
-        <div class="sa-footer__col">
-          <div class="sa-footer__colTitle">Open source</div>
-          <a
-            v-if="site.social.github"
-            class="sa-footer__link"
-            :href="site.social.github"
-            target="_blank"
-            rel="noopener"
-          >
-            GitHub
-          </a>
-          <a
-            v-if="site.social.linkedin"
-            class="sa-footer__link"
-            :href="site.social.linkedin"
-            target="_blank"
-            rel="noopener"
-          >
-            LinkedIn
-          </a>
-          <a
-            v-if="site.social.x"
-            class="sa-footer__link"
-            :href="site.social.x"
-            target="_blank"
-            rel="noopener"
-          >
-            X (Twitter)
-          </a>
-          <a
-            v-if="site.social.facebook"
-            class="sa-footer__link"
-            :href="site.social.facebook"
-            target="_blank"
-            rel="noopener"
-          >
-            Facebook
-          </a>
-
-          <div class="sa-footer__tinyNote">
-            We build products and systems that work — even when the internet
-            doesn’t.
+          <div class="mini">
+            <div class="k">Response time</div>
+            <div class="v">Fast on WhatsApp • Detailed on email</div>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- Bottom bar -->
-    <div class="sa-footer__bottom">
-      <div class="sa-container sa-footer__bottomInner">
-        <div class="sa-footer__copyright">
-          © {{ year }} {{ site.brand.name }}. All rights reserved.
+      <!-- Bottom bar -->
+      <div class="bottom">
+        <div class="brand">
+          <span class="logoDot" aria-hidden="true"></span>
+          <div class="bn">
+            <div class="b1">Softadastra</div>
+            <div class="b2">Business</div>
+          </div>
         </div>
 
-        <div class="sa-footer__bottomLinks">
-          <a class="sa-footer__bottomLink" href="#" @click.prevent="scrollTop()"
-            >Back to top ↑</a
-          >
+        <div class="legal">
+          <span>© {{ year }} Softadastra.</span>
+          <span class="sep">•</span>
+          <span>All rights reserved.</span>
         </div>
       </div>
     </div>
@@ -166,13 +112,7 @@ export default {
     emailHref() {
       const to = (this.site.brand?.email || "").trim();
       const subject = encodeURIComponent("Softadastra Business — Inquiry");
-      const body = encodeURIComponent(
-        "Hi Softadastra Business,\n\nMy name is:\nI’m interested in:\nBudget (approx):\nDeadline:\n\nDetails:\n"
-      );
-      return to ? `mailto:${to}?subject=${subject}&body=${body}` : "mailto:";
-    },
-    hours() {
-      return this.site.contact?.workingHours || "Mon–Sat, 09:00–20:00 (EAT)";
+      return to ? `mailto:${to}?subject=${subject}` : "mailto:";
     },
   },
   methods: {
@@ -185,166 +125,142 @@ export default {
 
 <style scoped>
 .sa-footer {
-  margin-top: 70px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(255, 255, 255, 0.02);
+  margin-top: 42px;
+  background: #111827; /* deep slate */
+  color: rgba(255, 255, 255, 0.88);
 }
 
-.sa-footer__inner {
-  padding: 34px 16px 26px 16px;
+/* Back to top (Amazon-like) */
+.toTop {
+  width: 100%;
+  border: 0;
+  background: #1f2937;
+  color: rgba(255, 255, 255, 0.92);
+  padding: 12px 10px;
+  font-weight: 900;
+  letter-spacing: 0.2px;
+  cursor: pointer;
+}
+.toTop:hover {
+  filter: brightness(1.07);
+}
+
+.grid {
+  padding: 28px 0 18px;
   display: grid;
-  gap: 18px;
+  gap: 22px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.sa-footer__brand {
-  display: flex;
-  gap: 14px;
-  align-items: flex-start;
-}
-
-.sa-footer__logo {
-  width: 44px;
-  height: 44px;
-  border-radius: 16px;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 153, 0, 0.95),
-    rgba(255, 153, 0, 0.25)
-  );
-  box-shadow: 0 12px 34px rgba(255, 153, 0, 0.14);
-  display: grid;
-  place-items: center;
-  flex: 0 0 auto;
-}
-
-.sa-footer__dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 999px;
-  background: rgba(11, 11, 13, 0.92);
-  box-shadow: 0 0 0 6px rgba(11, 11, 13, 0.18);
-}
-
-.sa-footer__brandText {
+.col {
   display: grid;
   gap: 10px;
 }
 
-.sa-footer__name {
+.h {
   font-weight: 950;
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 13px;
   letter-spacing: 0.2px;
 }
 
-.sa-footer__tagline {
+.l {
+  display: inline-flex;
+  width: fit-content;
   color: rgba(255, 255, 255, 0.72);
   font-size: 13px;
-  max-width: 680px;
+  font-weight: 850;
+  text-decoration: none;
 }
-
-.sa-footer__contact {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.sa-footer__contactLink {
-  font-weight: 900;
-  opacity: 0.92;
-}
-
-.sa-footer__contactLink:hover {
-  opacity: 1;
+.l:hover {
+  color: rgba(255, 255, 255, 0.92);
   text-decoration: underline;
 }
 
+.mini {
+  margin-top: 10px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.mini .k {
+  font-weight: 950;
+  font-size: 12px;
+  opacity: 0.9;
+}
+.mini .v {
+  margin-top: 4px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 850;
+  line-height: 1.4;
+}
+
+/* Bottom bar */
+.bottom {
+  padding: 18px 0 26px;
+  display: grid;
+  gap: 12px;
+  align-items: center;
+  justify-items: center;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.logoDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: var(--sa-accent);
+  box-shadow: 0 0 0 6px rgba(255, 153, 0, 0.15);
+}
+.bn {
+  display: grid;
+  line-height: 1.05;
+}
+.b1 {
+  font-weight: 950;
+  letter-spacing: 0.2px;
+  color: rgba(255, 255, 255, 0.96);
+}
+.b2 {
+  font-weight: 850;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.legal {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.62);
+  font-weight: 850;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
 .sep {
   opacity: 0.45;
 }
 
-.sa-footer__meta {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  color: rgba(255, 255, 255, 0.62);
-  font-size: 12px;
-}
-
-/* Columns */
-.sa-footer__cols {
-  display: grid;
-  gap: 14px;
-}
-
-.sa-footer__col {
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(255, 255, 255, 0.03);
-  border-radius: 18px;
-  padding: 14px;
-}
-
-.sa-footer__colTitle {
-  font-weight: 950;
-  margin-bottom: 10px;
-  letter-spacing: 0.2px;
-}
-
-.sa-footer__link {
-  display: block;
-  padding: 8px 10px;
-  border-radius: 14px;
-  opacity: 0.86;
-  transition: background 120ms ease, opacity 120ms ease, transform 120ms ease;
-}
-
-.sa-footer__link:hover {
-  opacity: 1;
-  background: rgba(255, 255, 255, 0.06);
-  transform: translateY(-1px);
-}
-
-.sa-footer__tinyNote {
-  margin-top: 12px;
-  color: rgba(255, 255, 255, 0.64);
-  font-size: 12px;
-  line-height: 1.5;
-}
-
-/* Bottom bar */
-.sa-footer__bottom {
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  padding: 14px 0;
-}
-
-.sa-footer__bottomInner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 0 16px;
-  color: rgba(255, 255, 255, 0.62);
-  font-size: 12px;
-}
-
-.sa-footer__bottomLink {
-  opacity: 0.9;
-  font-weight: 900;
-}
-
-.sa-footer__bottomLink:hover {
-  opacity: 1;
-  text-decoration: underline;
-}
-
-/* Responsive */
-@media (min-width: 860px) {
-  .sa-footer__inner {
-    grid-template-columns: 1.2fr 1.8fr;
-    align-items: start;
+@media (min-width: 920px) {
+  .grid {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 28px;
+    padding: 34px 0 20px;
   }
 
-  .sa-footer__cols {
-    grid-template-columns: repeat(3, 1fr);
+  .bottom {
+    grid-template-columns: 1fr 1fr;
+    justify-items: start;
+  }
+
+  .legal {
+    justify-content: flex-end;
+    justify-self: end;
   }
 }
 </style>

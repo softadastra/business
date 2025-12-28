@@ -19,7 +19,6 @@ import ProductsSection from "@/components/sections/ProductsSection.vue";
 import EntrepriseSection from "@/components/sections/EntrepriseSection.vue";
 import PortabilitySection from "@/components/sections/PortabilitySection.vue";
 import UseCaseSection from "@/components/sections/UseCaseSection.vue";
-import CTASection from "@/components/sections/CTASection.vue";
 
 export default {
   name: "HomePage",
@@ -30,7 +29,6 @@ export default {
     EntrepriseSection,
     PortabilitySection,
     UseCaseSection,
-    CTASection,
   },
 };
 </script>

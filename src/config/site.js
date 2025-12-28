@@ -2,13 +2,7 @@
 // Single source of truth for Softadastra Business (static marketing → WhatsApp + Email conversion)
 
 const encode = (s) => encodeURIComponent(String(s || "").trim());
-
-/**
- * IMPORTANT:
- * Replace WHATSAPP_PHONE_E164 with your real number in E.164 format (no +, no spaces).
- * Example: 2567XXXXXXXX
- */
-const WHATSAPP_PHONE_E164 = "2567XXXXXXXX"; // TODO: replace
+const WHATSAPP_PHONE_E164 = "256790220177";
 
 // ----------------------------
 // Brand (GLOBAL positioning)
@@ -20,7 +14,6 @@ const brand = {
   shortDescription:
     "We build an offline-first product ecosystem (Drive, Vix.cpp, Ivi.php, Rix) and deliver enterprise-ready deployments, integrations, and business platforms.",
   location: "Global", // keep it neutral
-  email: "business@softadastra.com",
   website: "https://softadastra.com",
 };
 
@@ -31,7 +24,7 @@ const social = {
   whatsappPhoneE164: WHATSAPP_PHONE_E164,
   whatsappBaseUrl: `https://wa.me/${WHATSAPP_PHONE_E164}`,
 
-  github: "https://github.com/softadastra-group",
+  github: "https://github.com/softadastra",
   linkedin: "",
   x: "",
   facebook: "",
@@ -41,20 +34,6 @@ const social = {
 // Products (Showcase layer)
 // ----------------------------
 const products = [
-  {
-    key: "drive",
-    title: "Softadastra Drive",
-    subtitle: "Offline-first sync and storage that keeps working.",
-    tags: ["Offline-first", "Sync", "Reliability"],
-    bullets: [
-      "Local-first files + background sync",
-      "Works across unstable networks",
-      "Conflict handling + retries",
-      "Designed for teams and institutions",
-    ],
-    ctaLabel: "Ask about Drive",
-    whatsappIntent: "drive",
-  },
   {
     key: "vix",
     title: "Vix.cpp",
@@ -96,6 +75,21 @@ const products = [
     ],
     ctaLabel: "Ask about Rix",
     whatsappIntent: "rix",
+  },
+
+  {
+    key: "market",
+    title: "Softadastra Market",
+    subtitle: "Commerce and business tooling built for real-world reliability.",
+    tags: ["Commerce", "SMEs", "Operations"],
+    bullets: [
+      "Business workflows and marketplace foundations",
+      "Designed for practical operations and scale",
+      "Reliability-first architecture",
+      "Built to integrate across the ecosystem",
+    ],
+    ctaLabel: "Ask about Market",
+    whatsappIntent: "market",
   },
 ];
 

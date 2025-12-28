@@ -1,77 +1,63 @@
 <template>
   <main class="sa-page">
-    <!-- Hero -->
     <section class="sa-section">
       <div class="sa-container">
         <div class="pageHero">
           <div>
-            <div class="sa-badge">
-              Transparent starting points • Fast WhatsApp quote
-            </div>
+            <div class="sa-badge">Clear tiers • Fast WhatsApp response</div>
 
             <h1 class="sa-title" style="font-size: clamp(26px, 3.2vw, 44px)">
               Pricing
             </h1>
 
-            <p class="sa-subtitle" style="max-width: 860px">
-              Pricing depends on scope, timeline, and requirements. These tiers
-              are starting points to help you choose the right direction — we
-              can confirm a quote quickly on WhatsApp.
+            <p class="sa-subtitle" style="max-width: 760px">
+              Start with a tier. We refine scope and delivery to match your
+              deadline and budget.
             </p>
 
-            <div class="actions">
-              <a
-                class="sa-btn sa-btn--accent"
-                :href="site.buildWhatsAppLink('general')"
-                target="_blank"
-                rel="noopener"
-              >
-                Get a quote on WhatsApp →
-              </a>
-              <a class="sa-btn" :href="emailHref">Email inquiry</a>
-            </div>
+            <div class="heroMeta">
+              <div class="replyBadge">
+                <span class="replyDot" aria-hidden="true"></span>
+                Typically replies in minutes
+              </div>
 
-            <div class="note">
-              <div class="dot" aria-hidden="true"></div>
-              <div class="noteText">
-                {{ site.pricing.note }}
+              <div class="note">
+                <div class="dot" aria-hidden="true"></div>
+                <div class="noteText">{{ site.pricing.note }}</div>
               </div>
             </div>
           </div>
 
           <div class="sa-card">
             <div class="sa-card__inner side">
-              <div class="sideTitle">Best fit</div>
-              <div class="sideText">
-                If you need offline-first (works without stable internet), or
-                enterprise deployment (on-prem/private), choose
-                <strong>Enterprise</strong> and we’ll scope it precisely.
+              <div class="sideTitle">Choose the right fit</div>
+
+              <div class="sideList">
+                <div class="sideItem">
+                  <div class="sideK">Starter</div>
+                  <div class="sideV">Websites • MVPs</div>
+                </div>
+
+                <div class="sideItem">
+                  <div class="sideK">Pro</div>
+                  <div class="sideV">Platforms • APIs</div>
+                </div>
+
+                <div class="sideItem">
+                  <div class="sideK">Enterprise</div>
+                  <div class="sideV">Offline-first • On-prem</div>
+                </div>
               </div>
 
-              <div class="quickLinks">
+              <div class="sideCta">
                 <a
-                  class="qLink qLink--accent"
-                  :href="site.buildWhatsAppLink('offline_first')"
+                  class="sideBtn"
+                  :href="whatsAppHref"
                   target="_blank"
                   rel="noopener"
+                  @click.prevent="openWhatsApp('general')"
                 >
-                  Offline-first quote →
-                </a>
-                <a
-                  class="qLink"
-                  :href="site.buildWhatsAppLink('online')"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  Platform quote →
-                </a>
-                <a
-                  class="qLink"
-                  :href="site.buildWhatsAppLink('website')"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  Website quote →
+                  Chat on WhatsApp →
                 </a>
               </div>
             </div>
@@ -80,22 +66,23 @@
       </div>
     </section>
 
-    <!-- Tiers -->
     <section class="sa-section" id="tiers">
       <div class="sa-container">
-        <h2 class="sa-title" style="font-size: clamp(22px, 2.6vw, 34px)">
-          Tiers
-        </h2>
-        <p class="sa-subtitle" style="max-width: 860px">
-          Start with a tier, then we tailor the final scope. Every project can
-          include WhatsApp conversion, performance, and clean delivery.
-        </p>
+        <div class="sectionHead">
+          <h2 class="sa-title" style="font-size: clamp(22px, 2.6vw, 34px)">
+            Tiers
+          </h2>
+          <p class="sa-subtitle" style="max-width: 860px">
+            Pick a starting point. We confirm features, timeline, and delivery
+            plan on WhatsApp.
+          </p>
+        </div>
 
         <div class="sa-grid sa-grid--3" style="margin-top: 18px">
           <article
             v-for="t in tiers"
             :key="t.key"
-            class="sa-card"
+            class="sa-card tierCard"
             :class="{ 'tier--highlight': t.key === highlightKey }"
           >
             <div class="sa-card__inner tier">
@@ -123,23 +110,39 @@
               <div class="tierActions">
                 <a
                   class="tierBtn tierBtn--accent"
-                  :href="quoteLinkForTier(t.key)"
+                  :href="whatsappTierLink(t.key)"
                   target="_blank"
                   rel="noopener"
+                  @click.prevent="openWhatsAppTier(t.key)"
                 >
-                  Start on WhatsApp →
+                  WhatsApp →
                 </a>
-                <router-link class="tierBtn" to="/contact"
-                  >More details →</router-link
-                >
+
+                <router-link class="tierBtn" to="/services">
+                  View services →
+                </router-link>
               </div>
             </div>
           </article>
         </div>
+
+        <div class="miniRow">
+          <div class="miniCard">
+            <div class="miniK">Fast estimate</div>
+            <div class="miniV">Share scope + deadline → we reply quickly.</div>
+          </div>
+          <div class="miniCard">
+            <div class="miniK">Clean delivery</div>
+            <div class="miniV">Architecture, performance, and handoff.</div>
+          </div>
+          <div class="miniCard">
+            <div class="miniK">Flexible</div>
+            <div class="miniV">Scope adjusts to budget and timeline.</div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- FAQ -->
     <section class="sa-section" id="faq">
       <div class="sa-container">
         <h2 class="sa-title" style="font-size: clamp(22px, 2.6vw, 34px)">
@@ -151,19 +154,18 @@
             <div class="sa-card__inner faq">
               <div class="q">How fast can you deliver?</div>
               <div class="a">
-                Depends on scope. Small websites can be fast. Platforms and
-                offline-first systems need proper scoping + testing. We optimize
-                for reliability, not rushed hacks.
+                Depends on scope. Small sites move fast. Platforms and
+                offline-first systems require proper scoping and rollout.
               </div>
             </div>
           </article>
 
           <article class="sa-card">
             <div class="sa-card__inner faq">
-              <div class="q">Do you support enterprise deployments?</div>
+              <div class="q">Do you support on-prem or hybrid?</div>
               <div class="a">
-                Yes. Cloud, on-prem, or hybrid. We can provide deployment plans,
-                security practices, and training.
+                Yes. We support cloud, on-prem, or hybrid deployments with
+                security and deployment planning.
               </div>
             </div>
           </article>
@@ -172,9 +174,8 @@
             <div class="sa-card__inner faq">
               <div class="q">What does “offline-first” mean?</div>
               <div class="a">
-                The system works locally without stable internet, then syncs
-                safely when the connection returns (retry + resilience +
-                conflict strategy).
+                The system keeps working without stable internet using local
+                data + background sync with retries and conflict strategy.
               </div>
             </div>
           </article>
@@ -182,32 +183,40 @@
       </div>
     </section>
 
-    <!-- Final CTA -->
     <section class="sa-section">
       <div class="sa-container">
         <div class="final sa-card">
           <div class="sa-card__inner finalInner">
             <div>
-              <div class="finalBadge">Fastest path</div>
-              <div class="finalTitle">
-                Send your idea on WhatsApp — get a clear plan.
-              </div>
+              <div class="finalBadge">Next step</div>
+              <div class="finalTitle">Send scope + deadline + budget.</div>
               <div class="finalText">
-                Share scope + deadline + budget range. We’ll reply with the best
-                tier and next steps.
+                We reply with a clear plan and the right tier.
               </div>
             </div>
 
             <div class="finalActions">
               <a
-                class="sa-btn sa-btn--accent"
-                :href="site.buildWhatsAppLink('general')"
+                class="sa-btn sa-btn--accent waCta"
+                :href="whatsAppHref"
                 target="_blank"
                 rel="noopener"
+                @click.prevent="openWhatsApp('general')"
+              >
+                WhatsApp →
+                <span class="waPulse" aria-hidden="true"></span>
+              </a>
+
+              <a
+                class="sa-btn waBtn"
+                :href="whatsAppHref"
+                target="_blank"
+                rel="noopener"
+                @click.prevent="openWhatsApp('general')"
               >
                 WhatsApp →
               </a>
-              <a class="sa-btn" :href="emailHref">Email →</a>
+
               <router-link class="sa-btn" to="/services">Services</router-link>
             </div>
           </div>
@@ -223,10 +232,7 @@ import site from "@/config/site.js";
 export default {
   name: "PricingPage",
   data() {
-    return {
-      site,
-      highlightKey: "pro",
-    };
+    return { site, highlightKey: "pro" };
   },
   computed: {
     tiers() {
@@ -239,15 +245,8 @@ export default {
       if (c === "GBP") return "£";
       return "";
     },
-    emailHref() {
-      const to = (this.site.brand?.email || "").trim();
-      const subject = encodeURIComponent(
-        "Softadastra Business — Pricing inquiry"
-      );
-      const body = encodeURIComponent(
-        "Hi Softadastra Business,\n\nMy name is:\nI’m interested in:\nTier (Starter/Pro/Enterprise):\nBudget range:\nDeadline:\n\nDetails:\n"
-      );
-      return to ? `mailto:${to}?subject=${subject}&body=${body}` : "mailto:";
+    whatsAppHref() {
+      return this.site.buildWhatsAppLink("general");
     },
   },
   methods: {
@@ -255,11 +254,81 @@ export default {
       const num = Number(n || 0);
       return num.toLocaleString(undefined, { maximumFractionDigits: 0 });
     },
-    quoteLinkForTier(tierKey) {
-      // Map tiers to the best WhatsApp template intent in site.js
-      if (tierKey === "starter") return this.site.buildWhatsAppLink("website");
-      if (tierKey === "pro") return this.site.buildWhatsAppLink("online");
-      return this.site.buildWhatsAppLink("offline_first");
+    isMobileDevice() {
+      const ua = navigator.userAgent || "";
+      const hasTouch = "ontouchstart" in window || navigator.maxTouchPoints > 0;
+      const smallScreen = window.matchMedia("(max-width: 980px)").matches;
+      return (
+        /Android|iPhone|iPad|iPod|Opera Mini|IEMobile/i.test(ua) ||
+        (hasTouch && smallScreen)
+      );
+    },
+    openWhatsApp(intent = "general") {
+      const phone = (this.site?.social?.whatsappPhoneE164 || "").trim();
+      const msg =
+        this.site?.whatsappTemplates?.[intent] ||
+        this.site?.whatsappTemplates?.general ||
+        "";
+      const encoded = encodeURIComponent(String(msg));
+      const webUrl = phone
+        ? `https://wa.me/${phone}?text=${encoded}`
+        : this.site.buildWhatsAppLink(intent);
+
+      if (!phone) {
+        window.open(webUrl, "_blank", "noopener");
+        return;
+      }
+
+      if (this.isMobileDevice()) {
+        const appUrl = `whatsapp://send?phone=${phone}&text=${encoded}`;
+        window.location.href = appUrl;
+        window.setTimeout(() => {
+          window.open(webUrl, "_blank", "noopener");
+        }, 650);
+        return;
+      }
+
+      window.open(webUrl, "_blank", "noopener");
+    },
+    whatsappTierLink(tierKey) {
+      const t = (this.tiers || []).find((x) => x.key === tierKey);
+      const tierName = (t?.title || tierKey || "").trim();
+      const currency = (this.site?.pricing?.currency || "USD").trim();
+      const priceFrom =
+        t?.priceFrom != null ? `${t.priceFrom} ${currency}` : "";
+
+      const text =
+        `Hi Softadastra Business! I want a pricing estimate.\n\n` +
+        `Name:\n` +
+        `Project type:\n` +
+        `Tier: ${tierName}${priceFrom ? ` (from ${priceFrom})` : ""}\n` +
+        `Budget range:\n` +
+        `Deadline:\n\n` +
+        `Details:\n`;
+
+      const phone = (this.site?.social?.whatsappPhoneE164 || "").trim();
+      if (!phone) return this.site.buildWhatsAppLink("general");
+      return `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
+    },
+    openWhatsAppTier(tierKey) {
+      const link = this.whatsappTierLink(tierKey);
+      const phone = (this.site?.social?.whatsappPhoneE164 || "").trim();
+      if (!phone) {
+        window.open(link, "_blank", "noopener");
+        return;
+      }
+
+      if (this.isMobileDevice()) {
+        const text = link.split("?text=")[1] || "";
+        const appUrl = `whatsapp://send?phone=${phone}&text=${text}`;
+        window.location.href = appUrl;
+        window.setTimeout(() => {
+          window.open(link, "_blank", "noopener");
+        }, 650);
+        return;
+      }
+
+      window.open(link, "_blank", "noopener");
     },
   },
 };
@@ -283,8 +352,53 @@ export default {
   flex-wrap: wrap;
 }
 
+.heroMeta {
+  margin-top: 14px;
+  display: grid;
+  gap: 10px;
+  max-width: 760px;
+}
+
+.replyBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  width: fit-content;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(18, 18, 18, 0.08);
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: 0 10px 20px rgba(17, 17, 17, 0.04);
+  font-weight: 950;
+  font-size: 12px;
+  color: rgba(18, 18, 18, 0.78);
+}
+
+.replyDot {
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  background: rgba(255, 153, 0, 0.92);
+  box-shadow: 0 0 0 6px rgba(255, 153, 0, 0.16);
+  animation: replyPulse 1.65s ease-in-out infinite;
+}
+
+@keyframes replyPulse {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.7;
+  }
+  55% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.95);
+    opacity: 0.7;
+  }
+}
+
 .note {
-  margin-top: 16px;
   display: flex;
   gap: 10px;
   align-items: flex-start;
@@ -294,6 +408,7 @@ export default {
   border-radius: 18px;
   box-shadow: 0 10px 22px rgba(17, 17, 17, 0.05);
 }
+
 .dot {
   width: 10px;
   height: 10px;
@@ -302,6 +417,7 @@ export default {
   background: rgba(255, 153, 0, 0.55);
   border: 1px solid rgba(255, 153, 0, 0.22);
 }
+
 .noteText {
   color: rgba(18, 18, 18, 0.72);
   font-weight: 850;
@@ -309,46 +425,137 @@ export default {
   line-height: 1.5;
 }
 
-/* side card */
+.waCta {
+  position: relative;
+  overflow: hidden;
+  transform: translateZ(0);
+  transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
+}
+
+.waCta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 16px 28px rgba(255, 153, 0, 0.18);
+}
+
+.waCta:active {
+  transform: translateY(0px);
+  filter: brightness(0.98);
+}
+
+.waPulse {
+  position: absolute;
+  inset: -40%;
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(255, 255, 255, 0.55),
+    rgba(255, 255, 255, 0) 55%
+  );
+  transform: translateX(-65%) rotate(10deg);
+  opacity: 0;
+  pointer-events: none;
+  animation: waShine 2.4s ease-in-out infinite;
+}
+
+@keyframes waShine {
+  0% {
+    transform: translateX(-70%) rotate(10deg);
+    opacity: 0;
+  }
+  25% {
+    opacity: 0.65;
+  }
+  55% {
+    transform: translateX(50%) rotate(10deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(50%) rotate(10deg);
+    opacity: 0;
+  }
+}
+
+.waBtn {
+  transition: transform 180ms ease, opacity 180ms ease;
+}
+
+.waBtn:hover {
+  transform: translateY(-1px);
+  opacity: 1;
+}
+
 .sideTitle {
   font-weight: 950;
   letter-spacing: 0.2px;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
-.sideText {
-  color: rgba(18, 18, 18, 0.72);
-  font-weight: 850;
-  font-size: 13px;
-  line-height: 1.6;
-}
-.quickLinks {
-  margin-top: 14px;
+
+.sideList {
+  margin-top: 10px;
   display: grid;
   gap: 10px;
 }
-.qLink {
-  font-weight: 950;
-  opacity: 0.9;
-}
-.qLink:hover {
-  opacity: 1;
-  text-decoration: underline;
-}
-.qLink--accent {
-  color: rgba(18, 18, 18, 0.92);
+
+.sideItem {
+  padding: 10px 12px;
+  border-radius: 16px;
+  border: 1px solid rgba(18, 18, 18, 0.08);
+  background: rgba(18, 18, 18, 0.02);
 }
 
-/* tier card */
+.sideK {
+  font-weight: 950;
+  letter-spacing: 0.2px;
+  font-size: 12px;
+}
+
+.sideV {
+  margin-top: 4px;
+  color: var(--sa-muted);
+  font-weight: 850;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.sideCta {
+  margin-top: 12px;
+  display: flex;
+}
+
+.sideBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 11px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(18, 18, 18, 0.1);
+  background: rgba(18, 18, 18, 0.03);
+  font-weight: 950;
+  font-size: 13px;
+  opacity: 0.92;
+}
+
+.sideBtn:hover {
+  opacity: 1;
+}
+
+.sectionHead {
+  display: grid;
+  gap: 8px;
+}
+
 .tierTop {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 10px;
 }
+
 .tierName {
   font-weight: 950;
   letter-spacing: 0.2px;
 }
+
 .tierChip {
   font-size: 12px;
   padding: 6px 10px;
@@ -364,16 +571,19 @@ export default {
   align-items: baseline;
   gap: 8px;
 }
+
 .tierPrice .from {
   opacity: 0.65;
   font-weight: 850;
   font-size: 12px;
 }
+
 .tierPrice .amount {
   font-weight: 950;
   font-size: 28px;
   letter-spacing: -0.2px;
 }
+
 .tierPrice .unit {
   opacity: 0.65;
   font-weight: 850;
@@ -395,6 +605,7 @@ export default {
   font-size: 13px;
   line-height: 1.6;
 }
+
 .tierList li {
   margin: 7px 0;
 }
@@ -418,6 +629,7 @@ export default {
   font-size: 13px;
   opacity: 0.92;
 }
+
 .tierBtn:hover {
   opacity: 1;
 }
@@ -428,19 +640,47 @@ export default {
   color: rgba(18, 18, 18, 0.92);
 }
 
-/* highlight */
 .tier--highlight {
   transform: translateY(-2px);
 }
+
 .tier--highlight .tierBtn--accent {
   box-shadow: 0 16px 28px rgba(255, 153, 0, 0.18);
 }
 
-/* FAQ */
+.miniRow {
+  margin-top: 14px;
+  display: grid;
+  gap: 10px;
+}
+
+.miniCard {
+  padding: 12px 14px;
+  border-radius: 16px;
+  border: 1px solid rgba(18, 18, 18, 0.08);
+  background: rgba(255, 255, 255, 0.62);
+  box-shadow: 0 10px 18px rgba(17, 17, 17, 0.03);
+}
+
+.miniK {
+  font-weight: 950;
+  letter-spacing: 0.2px;
+  font-size: 12px;
+}
+
+.miniV {
+  margin-top: 4px;
+  color: rgba(18, 18, 18, 0.7);
+  font-weight: 850;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
 .faq .q {
   font-weight: 950;
   letter-spacing: 0.2px;
 }
+
 .faq .a {
   margin-top: 10px;
   color: var(--sa-muted);
@@ -448,12 +688,12 @@ export default {
   line-height: 1.65;
 }
 
-/* final */
 .finalInner {
   display: grid;
   gap: 16px;
   align-items: center;
 }
+
 .finalBadge {
   display: inline-flex;
   align-items: center;
@@ -466,12 +706,14 @@ export default {
   color: rgba(18, 18, 18, 0.82);
   width: fit-content;
 }
+
 .finalTitle {
   margin-top: 10px;
   font-weight: 950;
   letter-spacing: 0.2px;
   font-size: clamp(18px, 2.2vw, 26px);
 }
+
 .finalText {
   margin-top: 6px;
   color: rgba(18, 18, 18, 0.72);
@@ -479,6 +721,7 @@ export default {
   font-size: 13px;
   line-height: 1.5;
 }
+
 .finalActions {
   display: flex;
   gap: 10px;
@@ -491,11 +734,28 @@ export default {
     grid-template-columns: 1.2fr 0.8fr;
     align-items: stretch;
   }
+
+  .miniRow {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
   .finalInner {
     grid-template-columns: 1.3fr 0.7fr;
   }
+
   .finalActions {
     justify-content: flex-end;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .replyDot,
+  .waPulse {
+    animation: none;
+  }
+  .waCta,
+  .waBtn {
+    transition: none;
   }
 }
 </style>

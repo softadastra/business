@@ -1,48 +1,38 @@
 <template>
   <main class="sa-page">
+    <!-- Hero -->
     <section class="sa-section">
       <div class="sa-container">
-        <!-- Page hero -->
         <div class="pageHero">
           <div>
-            <div class="sa-badge">
-              Solutions • Delivery • Offline-first systems
-            </div>
+            <div class="sa-badge">Solutions • Delivery • Reliability</div>
 
             <h1 class="sa-title" style="font-size: clamp(26px, 3.2vw, 44px)">
               Services & Solutions
             </h1>
 
             <p class="sa-subtitle" style="max-width: 860px">
-              Softadastra Business delivers reliable systems: websites, mobile
-              apps, online platforms, and offline-first software that continues
-              to work even under unstable connectivity. We don’t just “build
-              apps” — we ship maintainable, scalable solutions.
+              We deliver reliable systems: websites, mobile apps, platforms, and
+              offline-first software that keeps working under unstable
+              connectivity. Clean architecture, predictable delivery.
             </p>
 
             <div class="actions">
-              <a
-                class="sa-btn sa-btn--accent"
-                :href="site.buildWhatsAppLink('general')"
-                target="_blank"
-                rel="noopener"
-              >
-                WhatsApp inquiry →
-              </a>
-              <a class="sa-btn" :href="emailHref">Email inquiry</a>
+              <router-link class="sa-btn sa-btn--accent" to="/contact">
+                Request a quote →
+              </router-link>
+              <router-link class="sa-btn" to="/pricing">Pricing</router-link>
             </div>
 
             <div class="meta">
               <div class="metaItem">
                 <span class="k">Best for</span>
-                <span class="v"
-                  >Enterprises • Institutions • SMEs • Startups</span
-                >
+                <span class="v">Enterprises • Institutions • SMEs</span>
               </div>
               <div class="metaItem">
                 <span class="k">Approach</span>
                 <span class="v"
-                  >Offline-first + performance + clean architecture</span
+                  >Reliability-first • Performance • Maintainable</span
                 >
               </div>
             </div>
@@ -51,14 +41,13 @@
           <!-- right card -->
           <div class="sa-card">
             <div class="sa-card__inner rightCard">
-              <div class="rightTitle">What we can deliver</div>
+              <div class="rightTitle">What we deliver</div>
               <ul class="rightList">
                 <li>Business websites & landing pages</li>
-                <li>Mobile apps (Android-first, iOS optional)</li>
+                <li>Mobile apps</li>
                 <li>Online platforms (SaaS, admin systems)</li>
-                <li>Offline-first software with sync (WhatsApp-like)</li>
-                <li>Enterprise deployment (on-prem / private cloud)</li>
-                <li>Integration, migration, training & support</li>
+                <li>Offline-first software with sync</li>
+                <li>Enterprise deployments (on-prem / private cloud)</li>
               </ul>
 
               <router-link class="rightLink" to="/contact">
@@ -70,62 +59,53 @@
       </div>
     </section>
 
-    <!-- Offers grid from site.js -->
-    <section class="sa-section" id="offers">
+    <!-- Offers -->
+    <!-- <section class="sa-section" id="offers">
       <div class="sa-container">
         <h2 class="sa-title" style="font-size: clamp(22px, 2.6vw, 34px)">
           Core services
         </h2>
         <p class="sa-subtitle" style="max-width: 860px">
-          Choose a service category below. Each entry point is optimized for
-          fast scoping and clear delivery.
+          Choose a category below. Each one is an entry point for scoping and
+          delivery.
         </p>
 
         <div class="sa-grid sa-grid--3" style="margin-top: 18px">
-          <article v-for="o in site.offers" :key="o.key" class="sa-card">
+          <article v-for="o in site.offers" :key="o.key" class="sa-card offer">
             <div class="sa-card__inner">
               <div class="offerTop">
                 <div class="offerTitle">{{ o.title }}</div>
                 <div class="offerSub">{{ o.subtitle }}</div>
               </div>
 
-              <ul class="offerBullets">
+              <ul class="offerBullets" v-if="o.bullets?.length">
                 <li v-for="(b, i) in o.bullets" :key="i">{{ b }}</li>
               </ul>
 
               <div class="offerLinks">
-                <a
-                  class="offerLink offerLink--accent"
-                  :href="site.buildWhatsAppLink(o.whatsappIntent || 'general')"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  Ask on WhatsApp →
-                </a>
-                <router-link class="offerLink" to="/contact"
-                  >Email / details →</router-link
-                >
+                <router-link class="offerLink offerLink--accent" to="/contact">
+                  Request this service →
+                </router-link>
+                <router-link class="offerLink" to="/pricing">
+                  Pricing →
+                </router-link>
               </div>
             </div>
           </article>
         </div>
       </div>
-    </section>
+    </section> -->
 
     <!-- Process -->
     <section class="sa-section" id="process">
       <div class="sa-container">
-        <div class="processHead">
-          <div>
-            <h2 class="sa-title" style="font-size: clamp(22px, 2.6vw, 34px)">
-              How it works
-            </h2>
-            <p class="sa-subtitle" style="max-width: 860px">
-              A predictable process. Clear scope, clean delivery, and support
-              when needed.
-            </p>
-          </div>
-        </div>
+        <h2 class="sa-title" style="font-size: clamp(22px, 2.6vw, 34px)">
+          How it works
+        </h2>
+        <p class="sa-subtitle" style="max-width: 860px">
+          A predictable flow: scope, build, launch. Clear milestones and clean
+          handoff.
+        </p>
 
         <div class="sa-grid sa-grid--3" style="margin-top: 18px">
           <article class="sa-card">
@@ -133,8 +113,8 @@
               <div class="stepN">01</div>
               <div class="stepT">Scope</div>
               <div class="stepD">
-                We clarify your goal, users, features, timeline, and budget
-                range. We propose a minimal, reliable plan (MVP-first).
+                We clarify goals, users, features, timeline, and budget range.
+                Then we propose a minimal reliable plan (MVP-first).
               </div>
             </div>
           </article>
@@ -144,9 +124,8 @@
               <div class="stepN">02</div>
               <div class="stepT">Build</div>
               <div class="stepD">
-                We implement with professional standards: structure,
-                performance, security, and maintainability. Regular updates +
-                demos.
+                We implement with structure and standards: performance,
+                security, and maintainability. Regular demos.
               </div>
             </div>
           </article>
@@ -154,11 +133,10 @@
           <article class="sa-card">
             <div class="sa-card__inner step">
               <div class="stepN">03</div>
-              <div class="stepT">Launch & Support</div>
+              <div class="stepT">Launch</div>
               <div class="stepD">
                 Deployment (cloud/on-prem/hybrid), documentation, and optional
-                maintenance. For offline-first, we validate sync behavior under
-                realistic network conditions.
+                maintenance. Offline-first projects include real network tests.
               </div>
             </div>
           </article>
@@ -167,22 +145,21 @@
         <div class="processNote">
           <div class="dot" aria-hidden="true"></div>
           <div class="text">
-            For enterprise and institutions, we can deliver a deployment plan:
-            environments, security, monitoring, and training.
+            For enterprises and institutions: we can include deployment
+            planning, security practices, and training.
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Packages (non-cheap wording) -->
+    <!-- Packages -->
     <section class="sa-section" id="packages">
       <div class="sa-container">
         <h2 class="sa-title" style="font-size: clamp(22px, 2.6vw, 34px)">
           Delivery packages
         </h2>
         <p class="sa-subtitle" style="max-width: 860px">
-          These packages help you choose a starting point. Final pricing depends
-          on scope and requirements.
+          Starting points only. Final pricing depends on scope and requirements.
         </p>
 
         <div class="sa-grid sa-grid--3" style="margin-top: 18px">
@@ -194,18 +171,12 @@
               </div>
               <ul class="packList">
                 <li>Website / landing page</li>
-                <li>WhatsApp conversion optimized</li>
                 <li>Performance + basic SEO</li>
-                <li>Clean handoff + small docs</li>
+                <li>Clean handoff</li>
               </ul>
-              <a
-                class="packLink"
-                :href="site.buildWhatsAppLink('website')"
-                target="_blank"
-                rel="noopener"
-              >
-                Start on WhatsApp →
-              </a>
+              <router-link class="packLink" to="/contact?tier=starter">
+                Request Launch →
+              </router-link>
             </div>
           </article>
 
@@ -216,19 +187,13 @@
                 <div class="packTag packTag--accent">Most requested</div>
               </div>
               <ul class="packList">
-                <li>Online system (admin + roles)</li>
+                <li>Admin + roles</li>
                 <li>API-first architecture</li>
-                <li>Security and scalability</li>
-                <li>Deployment + optional monitoring</li>
+                <li>Security + scalability</li>
               </ul>
-              <a
-                class="packLink"
-                :href="site.buildWhatsAppLink('online')"
-                target="_blank"
-                rel="noopener"
-              >
-                Discuss your platform →
-              </a>
+              <router-link class="packLink" to="/contact?tier=pro">
+                Request Platform →
+              </router-link>
             </div>
           </article>
 
@@ -236,22 +201,16 @@
             <div class="sa-card__inner pack">
               <div class="packTop">
                 <div class="packName">Offline-first</div>
-                <div class="packTag">Sync like WhatsApp</div>
+                <div class="packTag">Local + sync</div>
               </div>
               <ul class="packList">
                 <li>Works offline by default</li>
                 <li>Background sync + retry</li>
-                <li>Conflict handling strategy</li>
-                <li>Designed for field & unstable networks</li>
+                <li>Conflict strategy</li>
               </ul>
-              <a
-                class="packLink"
-                :href="site.buildWhatsAppLink('offline_first')"
-                target="_blank"
-                rel="noopener"
-              >
-                Build offline-first →
-              </a>
+              <router-link class="packLink" to="/contact?tier=enterprise">
+                Request Offline-first →
+              </router-link>
             </div>
           </article>
         </div>
@@ -265,24 +224,17 @@
           <div class="sa-card__inner finalInner">
             <div>
               <div class="finalBadge">Ready to start?</div>
-              <div class="finalTitle">
-                Tell us what you need — we reply fast.
-              </div>
+              <div class="finalTitle">Share your scope — we reply fast.</div>
               <div class="finalText">
-                WhatsApp is best for quick estimates. Email is ideal for
-                enterprise requirements and documents.
+                If you already know your tier, send it with your deadline and
+                budget range.
               </div>
             </div>
 
             <div class="finalActions">
-              <a
-                class="sa-btn sa-btn--accent"
-                :href="site.buildWhatsAppLink('general')"
-                target="_blank"
-                rel="noopener"
-              >
-                WhatsApp →
-              </a>
+              <router-link class="sa-btn sa-btn--accent" to="/contact">
+                Request a quote →
+              </router-link>
               <a class="sa-btn" :href="emailHref">Email →</a>
               <router-link class="sa-btn" to="/pricing">Pricing</router-link>
             </div>
@@ -352,12 +304,12 @@ export default {
   color: rgba(18, 18, 18, 0.72);
 }
 
-.rightCard .rightTitle {
+/* right card */
+.rightTitle {
   font-weight: 950;
   letter-spacing: 0.2px;
   margin-bottom: 10px;
 }
-
 .rightList {
   margin: 0;
   padding-left: 18px;
@@ -368,7 +320,6 @@ export default {
 .rightList li {
   margin: 7px 0;
 }
-
 .rightLink {
   display: inline-block;
   margin-top: 12px;
@@ -381,6 +332,12 @@ export default {
 }
 
 /* offers */
+.offer {
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+.offer:hover {
+  transform: translateY(-2px);
+}
 .offerTop {
   display: grid;
   gap: 6px;
@@ -394,7 +351,6 @@ export default {
   font-size: 13px;
   line-height: 1.4;
 }
-
 .offerBullets {
   margin: 12px 0 0 0;
   padding-left: 18px;
@@ -405,7 +361,6 @@ export default {
 .offerBullets li {
   margin: 7px 0;
 }
-
 .offerLinks {
   margin-top: 14px;
   display: flex;
@@ -413,10 +368,9 @@ export default {
   flex-wrap: wrap;
   align-items: center;
 }
-
 .offerLink {
   font-weight: 950;
-  opacity: 0.9;
+  opacity: 0.92;
 }
 .offerLink:hover {
   opacity: 1;
@@ -443,7 +397,6 @@ export default {
   font-size: 13px;
   line-height: 1.65;
 }
-
 .processNote {
   margin-top: 16px;
   display: flex;
@@ -495,7 +448,6 @@ export default {
   background: rgba(255, 153, 0, 0.12);
   color: rgba(18, 18, 18, 0.82);
 }
-
 .packList {
   margin: 12px 0 0 0;
   padding-left: 18px;
@@ -506,16 +458,18 @@ export default {
 .packList li {
   margin: 7px 0;
 }
-
 .packLink {
   display: inline-block;
   margin-top: 14px;
   font-weight: 950;
-  opacity: 0.9;
+  opacity: 0.92;
 }
 .packLink:hover {
   opacity: 1;
   text-decoration: underline;
+}
+.pack--accent {
+  box-shadow: 0 16px 28px rgba(255, 153, 0, 0.12);
 }
 
 /* final */

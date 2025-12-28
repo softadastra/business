@@ -16,7 +16,7 @@
             <div class="nodeIcon">
               <svg
                 viewBox="0 0 24 24"
-                width="20"
+                width="18"
                 height="20"
                 aria-hidden="true"
               >
@@ -33,7 +33,7 @@
             <div class="nodeIcon">
               <svg
                 viewBox="0 0 24 24"
-                width="20"
+                width="18"
                 height="20"
                 aria-hidden="true"
               >
@@ -50,7 +50,7 @@
             <div class="nodeIcon">
               <svg
                 viewBox="0 0 24 24"
-                width="20"
+                width="18"
                 height="20"
                 aria-hidden="true"
               >
@@ -122,7 +122,7 @@
             <div class="nodeIcon">
               <svg
                 viewBox="0 0 24 24"
-                width="20"
+                width="18"
                 height="20"
                 aria-hidden="true"
               >
@@ -139,7 +139,7 @@
             <div class="nodeIcon">
               <svg
                 viewBox="0 0 24 24"
-                width="20"
+                width="18"
                 height="20"
                 aria-hidden="true"
               >
@@ -156,7 +156,7 @@
             <div class="nodeIcon">
               <svg
                 viewBox="0 0 24 24"
-                width="20"
+                width="18"
                 height="20"
                 aria-hidden="true"
               >
@@ -216,7 +216,7 @@
               class="wireChip"
               x="-10"
               y="-10"
-              width="20"
+              width="18"
               height="20"
               rx="5"
             />
@@ -390,13 +390,13 @@ export default {
   border: 1px solid var(--sa-border);
   background: rgba(255, 255, 255, 0.72);
   box-shadow: var(--sa-shadow);
-  padding: 22px;
+  padding: clamp(14px, 2.2vw, 22px);
   overflow: hidden;
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  grid-template-columns: minmax(180px, 1fr) auto minmax(180px, 1fr);
   align-items: center;
-  gap: 24px;
-  min-height: 380px;
+  gap: clamp(12px, 2vw, 24px);
+  min-height: clamp(360px, 46vw, 440px);
 }
 
 .flowStage::before {
@@ -413,9 +413,10 @@ export default {
 
 .flowCol {
   display: grid;
-  gap: 16px;
+  gap: clamp(10px, 1.4vw, 16px);
   position: relative;
   z-index: 3;
+  align-content: center;
 }
 
 .flowCol--left {
@@ -427,42 +428,54 @@ export default {
 }
 
 .nodeCard {
-  width: min(280px, 100%);
+  width: clamp(150px, 22vw, 210px);
+  max-width: 100%;
   border-radius: 14px;
   border: 1px solid var(--sa-border);
   background: rgba(255, 255, 255, 0.92);
   box-shadow: 0 12px 34px rgba(0, 0, 0, 0.06);
-  padding: 12px 12px;
-  display: grid;
-  gap: 8px;
+  padding: clamp(9px, 1.1vw, 12px);
+  display: flex;
+  align-items: center;
+  gap: clamp(8px, 1vw, 10px);
 }
 
 .nodeIcon {
-  width: 40px;
-  height: 40px;
+  width: clamp(34px, 3.4vw, 40px);
+  height: clamp(34px, 3.4vw, 40px);
   border-radius: 12px;
   border: 1px solid rgba(255, 153, 0, 0.25);
   background: rgba(255, 153, 0, 0.12);
   display: grid;
   place-items: center;
   color: rgba(30, 30, 30, 0.86);
+  flex: 0 0 auto;
+}
+
+.nodeIcon svg {
+  width: 18px;
+  height: 18px;
+  display: block;
 }
 
 .nodeLabel {
   font-weight: 800;
   color: var(--sa-text);
   letter-spacing: -0.1px;
-  font-size: 13px;
+  font-size: clamp(12px, 1.15vw, 13px);
+  line-height: 1.1;
+  white-space: nowrap;
 }
 
 .flowCenter {
   position: relative;
   z-index: 4;
+  justify-self: center;
 }
 
 .core {
-  width: 190px;
-  height: 190px;
+  width: clamp(150px, 18vw, 190px);
+  height: clamp(150px, 18vw, 190px);
   border-radius: 26px;
   border: 1px solid var(--sa-border);
   background: rgba(255, 255, 255, 0.95);
@@ -473,8 +486,8 @@ export default {
 }
 
 .saLogo {
-  width: 130px;
-  height: 130px;
+  width: clamp(108px, 12vw, 130px);
+  height: clamp(108px, 12vw, 130px);
   display: block;
 }
 
@@ -569,28 +582,159 @@ export default {
 
 @media (max-width: 980px) {
   .flowStage {
-    grid-template-columns: 1fr;
-    gap: 18px;
-    min-height: unset;
+    grid-template-columns: minmax(140px, 1fr) auto minmax(140px, 1fr);
+    gap: 12px;
+    min-height: 360px;
   }
 
-  .flowCol--left,
-  .flowCol--right {
-    justify-items: center;
+  .nodeCard {
+    width: clamp(140px, 28vw, 190px);
   }
 
   .core {
-    width: 170px;
-    height: 170px;
+    width: 152px;
+    height: 152px;
   }
 
   .saLogo {
-    width: 118px;
-    height: 118px;
+    width: 108px;
+    height: 108px;
+  }
+  .flow {
+    padding: 0;
+  }
+}
+
+@media (max-width: 700px) {
+  .flowStage {
+    grid-template-columns: minmax(120px, 1fr) auto minmax(120px, 1fr);
+    gap: 10px;
+    padding: 14px;
+    min-height: 330px;
   }
 
-  .wires {
-    display: none;
+  .flowCol {
+    gap: 10px;
+  }
+
+  .nodeCard {
+    width: clamp(128px, 30vw, 170px);
+    padding: 10px;
+  }
+
+  .nodeIcon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .core {
+    width: 142px;
+    height: 142px;
+  }
+
+  .saLogo {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+@media (max-width: 520px) {
+  .flowStage {
+    grid-template-columns: minmax(108px, 1fr) auto minmax(108px, 1fr);
+    gap: 8px;
+    padding: 12px;
+    min-height: 310px;
+  }
+
+  .flowCol {
+    gap: 8px;
+  }
+
+  .nodeCard {
+    width: clamp(104px, 32vw, 146px);
+    padding: 8px;
+    gap: 8px;
+  }
+
+  .nodeIcon {
+    width: 32px;
+    height: 32px;
+    border-radius: 11px;
+  }
+
+  .nodeIcon svg {
+    width: 17px;
+    height: 17px;
+  }
+
+  .nodeLabel {
+    font-size: 12px;
+    white-space: normal;
+    line-height: 1.12;
+  }
+
+  .core {
+    width: 118px;
+    height: 118px;
+    border-radius: 22px;
+  }
+
+  .saLogo {
+    width: 82px;
+    height: 82px;
+  }
+
+  .coreGlow {
+    inset: -14px;
+    border-radius: 26px;
+  }
+}
+
+@media (max-width: 390px) {
+  .flowStage {
+    grid-template-columns: minmax(96px, 1fr) auto minmax(96px, 1fr);
+    min-height: 300px;
+  }
+
+  .nodeCard {
+    width: clamp(96px, 33vw, 134px);
+    padding: 7px;
+  }
+
+  .nodeIcon {
+    width: 30px;
+    height: 30px;
+  }
+
+  .core {
+    width: 110px;
+    height: 110px;
+  }
+
+  .saLogo {
+    width: 76px;
+    height: 76px;
+  }
+}
+
+@media (max-width: 340px) {
+  .flowStage {
+    grid-template-columns: minmax(90px, 1fr) auto minmax(90px, 1fr);
+    min-height: 290px;
+  }
+
+  .nodeCard {
+    width: clamp(90px, 34vw, 126px);
+  }
+
+  .core {
+    width: 104px;
+    height: 104px;
+  }
+
+  .saLogo {
+    width: 72px;
+    height: 72px;
   }
 }
 </style>

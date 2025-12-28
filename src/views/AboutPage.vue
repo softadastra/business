@@ -197,13 +197,13 @@ export default {
   data() {
     return {
       products: [
-        {
-          key: "drive",
-          title: "Softadastra Drive",
-          tag: "Offline-first sync",
-          description:
-            "Cloud storage with offline support and real-time sync for unstable networks.",
-        },
+        // {
+        //   key: "drive",
+        //   title: "Softadastra Drive",
+        //   tag: "Offline-first sync",
+        //   description:
+        //     "Cloud storage with offline support and real-time sync for unstable networks.",
+        // },
         {
           key: "vix",
           title: "Vix.cpp",
@@ -232,13 +232,13 @@ export default {
           description:
             "Practical business tooling designed to be scalable and resilient.",
         },
-        {
-          key: "map",
-          title: "Softadastra Map",
-          tag: "Location & discovery",
-          description:
-            "Discovery and mapping features designed for the broader ecosystem.",
-        },
+        // {
+        //   key: "map",
+        //   title: "Softadastra Map",
+        //   tag: "Location & discovery",
+        //   description:
+        //     "Discovery and mapping features designed for the broader ecosystem.",
+        // },
       ],
     };
   },
