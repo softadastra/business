@@ -1,0 +1,22 @@
+:root {
+  --sa-primary: #ff9900;
+  --sa-primary-contrast: #ffffff;
+
+  --sa-bg: #f4f5f7;
+  --sa-surface: #ffffff;
+  --sa-surface-muted: #fafafa;
+
+  --sa-border: rgba(17, 17, 17, 0.12);
+
+  --sa-text: #1e1e1e;
+  --sa-text-muted: #6f6f6f;
+
+  --sa-maxw: 1200px;
+  --sa-radius: 8px;
+
+  --sa-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+
+  --sa-fast: 120ms;
+
+  --sa-focus: rgba(255, 153, 0, 0.28);
+}

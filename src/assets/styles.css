@@ -1,0 +1,24 @@
+:root {
+  --accent: #07aa7c;
+  --text: #222;
+  --muted: #666;
+  --bg: #fff;
+}
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial;
+  color: var(--text);
+  background: var(--bg);
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--accent);
+}
+.container {
+  max-width: 1024px;
+  margin: 24px auto;
+  padding: 0 0px;
+}
