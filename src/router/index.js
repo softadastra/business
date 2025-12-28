@@ -1,14 +1,21 @@
 import { createRouter, createWebHistory } from "vue-router";
 
-import HomePage from "@/views/HomePage.vue";
-import AboutPage from "@/views/AboutPage.vue";
-import ContactPage from "@/views/ContactPage.vue";
-import NotFound from "@/views/NotFound.vue";
+// Lazy-loaded pages (code splitting)
+const HomePage = () =>
+  import(/* webpackChunkName: "home" */ "@/views/HomePage.vue");
+const AboutPage = () =>
+  import(/* webpackChunkName: "about" */ "@/views/AboutPage.vue");
+const NotFound = () =>
+  import(/* webpackChunkName: "notfound" */ "@/views/NotFound.vue");
 
-import ServicesPage from "@/views/ServicesPage.vue";
-import PricingPage from "@/views/PricingPage.vue";
-import ProductPage from "@/views/ProductPage.vue";
-import ProductsPage from "@/views/ProductsPage.vue";
+const ServicesPage = () =>
+  import(/* webpackChunkName: "services" */ "@/views/ServicesPage.vue");
+const PricingPage = () =>
+  import(/* webpackChunkName: "pricing" */ "@/views/PricingPage.vue");
+const ProductPage = () =>
+  import(/* webpackChunkName: "product" */ "@/views/ProductPage.vue");
+const ProductsPage = () =>
+  import(/* webpackChunkName: "products" */ "@/views/ProductsPage.vue");
 
 const routes = [
   { path: "/home", redirect: "/" },
@@ -51,13 +58,6 @@ const routes = [
     component: AboutPage,
     meta: { title: "About — Softadastra Business" },
   },
-  {
-    path: "/contact",
-    name: "Contact",
-    component: ContactPage,
-    meta: { title: "Contact — Softadastra Business" },
-  },
-
   {
     path: "/:pathMatch(.*)*",
     name: "NotFound",
