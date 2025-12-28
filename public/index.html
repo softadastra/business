@@ -1,17 +1,85 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="fr">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title><%= htmlWebpackPlugin.options.title %></title>
+    <!-- Basic -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Title (fallback, overridden by router) -->
+    <title>Softadastra Business</title>
+
+    <!-- Meta description (fallback, overridden by router) -->
+    <meta
+      name="description"
+      content="Softadastra Business helps companies build reliable digital systems, SaaS platforms and offline-first solutions."
+    />
+
+    <!-- Canonical (fallback) -->
+    <link rel="canonical" href="https://business.softadastra.com/" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+
+    <!-- Open Graph (fallback for social sharing) -->
+    <meta property="og:site_name" content="Softadastra Business" />
+    <meta property="og:title" content="Softadastra Business" />
+    <meta
+      property="og:description"
+      content="Build reliable digital systems, SaaS platforms and offline-first solutions."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://business.softadastra.com/" />
+    <meta property="og:image" content="/og-image.png" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Softadastra Business" />
+    <meta
+      name="twitter:description"
+      content="Build reliable digital systems, SaaS platforms and offline-first solutions."
+    />
+
+    <!-- Theme color (mobile browsers) -->
+    <meta name="theme-color" content="#ff9900" />
+
+    <!-- Schema.org JSON-LD (SEO structured data) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Softadastra Business",
+        "url": "https://business.softadastra.com",
+        "logo": "https://business.softadastra.com/favicon.png",
+        "description": "Softadastra Business builds reliable digital systems, SaaS platforms and offline-first business software.",
+        "sameAs": ["https://github.com/softadastra-group"]
+      }
+    </script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Softadastra Business",
+        "url": "https://business.softadastra.com",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://business.softadastra.com/products?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      }
+    </script>
   </head>
+
   <body>
     <noscript>
-      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+      <strong>
+        We're sorry but Softadastra Business doesn't work properly without
+        JavaScript enabled.
+      </strong>
     </noscript>
+
     <div id="app"></div>
-    <!-- built files will be auto injected -->
   </body>
 </html>
