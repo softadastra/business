@@ -23,92 +23,93 @@ export const product = {
   },
 
   problem: {
-    eyebrow: "Problem",
-    title: "Distributed systems rarely fail cleanly.",
-    text: "A service can look healthy while losing data, duplicating writes, or recovering into an inconsistent state. Traditional monitoring often tells you what happened after the damage. Converdict focuses on verifying reliability behavior before failure becomes a business incident.",
+    eyebrow: "The problem",
+    title: "Network failures make systems unreliable in quiet ways.",
+    text: "A request can timeout, retry, succeed twice, or disappear without being visible immediately. Converdict focuses on these hidden failure cases before they become production incidents.",
     points: [
       {
-        title: "Retries can duplicate writes",
-        text: "When clients, queues, or workers retry requests, the system must prove that critical operations stay safe.",
+        title: "A timeout is not a clear answer",
+        text: "The client may think the request failed while the server already changed state.",
       },
       {
-        title: "Timeouts create uncertainty",
-        text: "A timeout does not always mean failure. It can hide a write that succeeded, failed, or partially completed.",
+        title: "Retries can create duplicates",
+        text: "Without strong protection, the same operation can run more than once.",
       },
       {
-        title: "Recovery paths are under-tested",
-        text: "Crashes, partitions, and restarts often expose bugs that normal happy-path tests never touch.",
+        title: "Recovery can leave data inconsistent",
+        text: "After a crash or network cut, services may come back with different views of the truth.",
       },
     ],
   },
 
   solution: {
-    eyebrow: "Product",
-    title: "Converdict verifies reliability under failure conditions.",
-    text: "Converdict is designed to test systems with realistic failure scenarios and produce clear verdicts about data loss, duplicate writes, retry safety, recovery behavior, and convergence.",
+    eyebrow: "What Converdict does",
+    title: "It tests your system under real failure scenarios.",
+    text: "Converdict runs reliability checks against your system and shows whether critical operations remain safe when the network fails, retries happen, or recovery starts.",
     points: [
       {
-        title: "Failure scenarios",
-        text: "Run controlled tests around unstable networks, retries, crashes, and recovery flows.",
+        title: "Inject failure scenarios",
+        text: "Simulate network cuts, timeouts, crashes, retries, and recovery flows around critical operations.",
       },
       {
-        title: "Reliability verdicts",
-        text: "Get direct answers about whether the system stayed correct or exposed a critical risk.",
+        title: "Detect unsafe behavior",
+        text: "Find data loss, duplicate writes, broken retry logic, slow recovery, and inconsistent state.",
       },
       {
-        title: "Engineering reports",
-        text: "Turn verification results into reports that teams can understand, discuss, and improve from.",
+        title: "Return a clear verdict",
+        text: "See whether the system stayed safe, what failed, and which reliability risk needs to be fixed.",
       },
     ],
   },
 
   proof: {
-    eyebrow: "What it checks",
-    title: "Built around the failure modes that matter.",
+    eyebrow: "What it verifies",
+    title: "The checks that expose silent failure.",
+    text: "Converdict focuses on the failure modes that usually stay hidden until production: lost writes, duplicated work, unsafe retries, slow recovery, and inconsistent state.",
     items: [
-      "Data loss",
-      "Duplicate writes",
-      "Retry safety",
-      "Recovery time",
-      "Crash recovery",
-      "Network interruption behavior",
-      "Deterministic convergence",
-      "Auditability of critical operations",
+      "Data loss after failure",
+      "Duplicate writes during retries",
+      "Unsafe timeout behavior",
+      "Idempotency protection",
+      "Outbox and queue recovery",
+      "Crash recovery safety",
+      "Recovery time after failure",
+      "Final state convergence",
     ],
   },
 
   useCases: {
     eyebrow: "Use cases",
-    title: "For teams building systems where correctness matters.",
+    title: "For systems where a bad retry can become a real incident.",
     items: [
       {
-        title: "Distributed APIs",
-        text: "Verify that important API operations stay safe under retries, timeouts, and partial failures.",
-      },
-      {
-        title: "Sync engines",
-        text: "Check whether nodes converge correctly after offline periods, interruptions, and delayed delivery.",
+        title: "Critical APIs",
+        text: "Verify that payment, order, account, and inventory operations stay safe when requests timeout or retry.",
       },
       {
         title: "Queues and workers",
-        text: "Test whether background processing remains safe when jobs are retried or workers crash.",
+        text: "Check that background jobs do not duplicate work, lose tasks, or corrupt state after worker crashes.",
       },
       {
-        title: "Edge and local-first systems",
-        text: "Validate behavior when the network is unstable and local execution must remain correct.",
+        title: "Sync engines",
+        text: "Test whether local and remote state converge correctly after offline periods and delayed delivery.",
+      },
+      {
+        title: "Distributed platforms",
+        text: "Validate recovery behavior across services, regions, edge nodes, and unreliable network paths.",
       },
     ],
   },
 
   cta: {
-    title: "Converdict is currently in development.",
-    text: "Softadastra Business will focus on one serious product first: Converdict. The dashboard, reports, agents, and billing system will come later as the product matures.",
+    title: "Help shape Converdict before launch.",
+    text: "Converdict is in development. Softadastra is looking for engineering teams that want to test reliability under network failures, retries, crashes, and recovery scenarios.",
     primaryAction: {
-      label: "Contact Softadastra",
+      label: "Request early access",
       href: "/contact",
     },
     secondaryAction: {
-      label: "Back to product",
+      label: "View product",
       href: "/product",
     },
   },

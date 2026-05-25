@@ -19,17 +19,7 @@ html {
 body {
   min-height: 100%;
   margin: 0;
-  background: radial-gradient(
-      circle at top left,
-      rgba(47, 212, 156, 0.1),
-      transparent 32rem
-    ),
-    radial-gradient(
-      circle at top right,
-      rgba(104, 167, 255, 0.08),
-      transparent 30rem
-    ),
-    var(--sb-bg);
+  background: var(--sb-bg);
   color: var(--sb-text);
 }
 
@@ -97,12 +87,13 @@ pre {
 }
 
 ::selection {
-  background: rgba(47, 212, 156, 0.28);
+  background: rgba(255, 106, 0, 0.28);
   color: var(--sb-text);
 }
 
 #app {
   min-height: 100vh;
+  background: var(--sb-bg);
 }
 
 .sb-container {
@@ -112,10 +103,12 @@ pre {
 
 .sb-page {
   min-height: 100vh;
+  background: var(--sb-bg);
 }
 
 .sb-section {
   padding: 96px 0;
+  background: var(--sb-bg);
 }
 
 .sb-section--compact {
@@ -149,8 +142,13 @@ pre {
 .sb-card {
   border: 1px solid var(--sb-border);
   border-radius: var(--sb-radius-lg);
-  background: rgba(15, 23, 36, 0.72);
+  background: var(--sb-surface);
   box-shadow: var(--sb-shadow-sm);
+}
+
+.sb-card:hover {
+  border-color: var(--sb-border-strong);
+  box-shadow: var(--sb-shadow-md);
 }
 
 .sb-muted {
@@ -168,6 +166,7 @@ pre {
 }
 
 .sb-link:hover {
+  color: var(--sb-primary-hover);
   text-decoration: underline;
 }
 

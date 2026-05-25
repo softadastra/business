@@ -1,9 +1,5 @@
 export const marketingNavigation = [
   {
-    label: "Home",
-    href: "/",
-  },
-  {
     label: "Product",
     href: "/product",
   },
@@ -32,10 +28,6 @@ export const footerNavigation = [
   {
     title: "Business",
     links: [
-      {
-        label: "Home",
-        href: "/",
-      },
       {
         label: "Product",
         href: "/product",
