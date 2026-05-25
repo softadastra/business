@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "es2021",
     "module": "esnext",
-    "baseUrl": "./",
+    "baseUrl": ".",
     "moduleResolution": "node",
     "paths": {
       "@/*": [
@@ -10,10 +10,13 @@
       ]
     },
     "lib": [
-      "esnext",
+      "es2021",
       "dom",
-      "dom.iterable",
-      "scripthost"
+      "dom.iterable"
     ]
-  }
+  },
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
 }
