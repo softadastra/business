@@ -1,16 +1,4 @@
-# Social media crawlers (for link previews)
-User-agent: facebookexternalhit
-Allow: /
-
-User-agent: Facebot
-Allow: /
-
-User-agent: Twitterbot
-Allow: /
-
-# All search engines
 User-agent: *
 Allow: /
 
-# Sitemap
-Sitemap: https://business.softadastra.com/sitemap.xml
+Sitemap: https://softadastra.com/sitemap.xml

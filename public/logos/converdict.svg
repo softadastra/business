@@ -1,0 +1,248 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="1200"
+  height="1200"
+  viewBox="0 0 1200 1200"
+  fill="none"
+>
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="42%" r="70%">
+      <stop offset="0%" stop-color="#17100a"/>
+      <stop offset="42%" stop-color="#070604"/>
+      <stop offset="100%" stop-color="#010101"/>
+    </radialGradient>
+
+    <linearGradient id="orangeMain" x1="350" y1="210" x2="850" y2="780" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#fff1b8"/>
+      <stop offset="32%" stop-color="#ffcc33"/>
+      <stop offset="62%" stop-color="#ff9900"/>
+      <stop offset="100%" stop-color="#d85c00"/>
+    </linearGradient>
+
+    <linearGradient id="metal" x1="340" y1="400" x2="860" y2="740" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#f1f1f1"/>
+      <stop offset="20%" stop-color="#8f8f8f"/>
+      <stop offset="52%" stop-color="#1a1a1a"/>
+      <stop offset="78%" stop-color="#666666"/>
+      <stop offset="100%" stop-color="#111111"/>
+    </linearGradient>
+
+    <linearGradient id="softText" x1="200" y1="820" x2="1000" y2="820" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="55%" stop-color="#fff3df"/>
+      <stop offset="100%" stop-color="#ffd28a"/>
+    </linearGradient>
+
+    <linearGradient id="converdictText" x1="200" y1="960" x2="1000" y2="960" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ff7a00"/>
+      <stop offset="45%" stop-color="#ff9900"/>
+      <stop offset="100%" stop-color="#ffc13b"/>
+    </linearGradient>
+
+    <filter id="orangeGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="12" result="blur"/>
+      <feColorMatrix
+        in="blur"
+        type="matrix"
+        values="
+          0 0 0 0 1
+          0 0 0 0 0.55
+          0 0 0 0 0
+          0 0 0 0.95 0"
+        result="coloredBlur"
+      />
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="strongOrangeGlow" x="-70%" y="-70%" width="240%" height="240%">
+      <feGaussianBlur stdDeviation="22" result="blur"/>
+      <feColorMatrix
+        in="blur"
+        type="matrix"
+        values="
+          0 0 0 0 1
+          0 0 0 0 0.48
+          0 0 0 0 0
+          0 0 0 0.9 0"
+        result="coloredBlur"
+      />
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="textGlow" x="-25%" y="-50%" width="150%" height="200%">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feColorMatrix
+        in="blur"
+        type="matrix"
+        values="
+          0 0 0 0 1
+          0 0 0 0 0.60
+          0 0 0 0 0.12
+          0 0 0 0.75 0"
+      />
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+
+  <!-- Background tech rings -->
+  <g opacity="0.28">
+    <circle cx="600" cy="520" r="330" stroke="#ff9900" stroke-width="1.2" stroke-dasharray="18 16"/>
+    <circle cx="600" cy="520" r="270" stroke="#ff9900" stroke-width="1" opacity="0.7"/>
+    <circle cx="600" cy="520" r="210" stroke="#ff9900" stroke-width="0.8" opacity="0.45"/>
+  </g>
+
+  <!-- Background circuit lines -->
+  <g opacity="0.42" stroke="#ff9900" stroke-width="1.4" stroke-linecap="round">
+    <path d="M0 250H220L300 330H410"/>
+    <path d="M0 320H260L335 390H470"/>
+    <path d="M0 610H250L340 700H455"/>
+    <path d="M1200 250H980L900 330H790"/>
+    <path d="M1200 320H940L865 390H730"/>
+    <path d="M1200 610H950L860 700H745"/>
+  </g>
+
+  <g opacity="0.7" fill="#ff9900">
+    <circle cx="250" cy="250" r="5"/>
+    <circle cx="300" cy="330" r="4"/>
+    <circle cx="940" cy="250" r="5"/>
+    <circle cx="900" cy="330" r="4"/>
+    <circle cx="250" cy="610" r="4"/>
+    <circle cx="950" cy="610" r="4"/>
+  </g>
+
+  <!-- Converging signal paths -->
+  <g filter="url(#orangeGlow)" stroke="#ff9900" stroke-width="3" stroke-linecap="round">
+    <path d="M360 270C420 345 470 405 542 510"/>
+    <path d="M420 230C465 330 510 420 570 525"/>
+    <path d="M500 185C520 320 550 430 590 535"/>
+    <path d="M600 140V545"/>
+    <path d="M700 185C680 320 650 430 610 535"/>
+    <path d="M780 230C735 330 690 420 630 525"/>
+    <path d="M840 270C780 345 730 405 658 510"/>
+  </g>
+
+  <!-- Vertical data lines -->
+  <g filter="url(#orangeGlow)" stroke="#ff9900" stroke-width="2" stroke-linecap="round" opacity="0.9">
+    <path d="M560 90V330"/>
+    <path d="M600 60V350"/>
+    <path d="M640 95V330"/>
+    <path d="M520 170V410"/>
+    <path d="M680 170V410"/>
+  </g>
+
+  <!-- Signal nodes -->
+  <g filter="url(#strongOrangeGlow)" fill="#ff9900">
+    <circle cx="600" cy="60" r="6"/>
+    <circle cx="560" cy="95" r="4"/>
+    <circle cx="640" cy="100" r="4"/>
+    <circle cx="520" cy="170" r="6"/>
+    <circle cx="680" cy="170" r="6"/>
+    <circle cx="455" cy="330" r="6"/>
+    <circle cx="745" cy="330" r="6"/>
+    <circle cx="542" cy="510" r="5"/>
+    <circle cx="570" cy="525" r="5"/>
+    <circle cx="590" cy="535" r="5"/>
+    <circle cx="610" cy="535" r="5"/>
+    <circle cx="630" cy="525" r="5"/>
+    <circle cx="658" cy="510" r="5"/>
+  </g>
+
+  <!-- Metallic outer emblem -->
+  <g filter="url(#orangeGlow)">
+    <path
+      d="M390 468
+         L460 405
+         L535 405
+         L455 480
+         V600
+         L595 730
+         V802
+         L385 612
+         V482
+         C385 476 387 471 390 468Z"
+      fill="url(#metal)"
+      stroke="#ffb13b"
+      stroke-width="3"
+      stroke-linejoin="round"
+    />
+
+    <path
+      d="M810 468
+         L740 405
+         L665 405
+         L745 480
+         V600
+         L605 730
+         V802
+         L815 612
+         V482
+         C815 476 813 471 810 468Z"
+      fill="url(#metal)"
+      stroke="#ffb13b"
+      stroke-width="3"
+      stroke-linejoin="round"
+    />
+
+    <!-- Main verdict check -->
+    <path
+      d="M455 500
+         L595 640
+         L745 490
+         L770 515
+         L595 718
+         L430 535
+         Z"
+      fill="url(#orangeMain)"
+      stroke="#ffe08a"
+      stroke-width="5"
+      stroke-linejoin="round"
+      filter="url(#strongOrangeGlow)"
+    />
+
+    <!-- Inner bright convergence core -->
+    <path
+      d="M600 350
+         L626 545
+         L600 590
+         L574 545
+         Z"
+      fill="#ffd24a"
+      opacity="0.95"
+      filter="url(#strongOrangeGlow)"
+    />
+
+    <circle cx="600" cy="585" r="12" fill="#fff0a8" filter="url(#strongOrangeGlow)"/>
+  </g>
+
+  <!-- Bottom emblem flare -->
+  <path
+    d="M430 805H770"
+    stroke="#ff9900"
+    stroke-width="4"
+    stroke-linecap="round"
+    opacity="0.7"
+    filter="url(#strongOrangeGlow)"
+  />
+
+  <!-- Warm reflection -->
+  <ellipse
+    cx="600"
+    cy="1050"
+    rx="360"
+    ry="28"
+    fill="#ff9900"
+    opacity="0.12"
+    filter="url(#strongOrangeGlow)"
+  />
+</svg>

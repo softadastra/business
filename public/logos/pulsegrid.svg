@@ -1,0 +1,243 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="1200"
+  height="1200"
+  viewBox="0 0 1200 1200"
+  fill="none"
+>
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="40%" r="75%">
+      <stop offset="0%" stop-color="#06312d"/>
+      <stop offset="42%" stop-color="#031316"/>
+      <stop offset="100%" stop-color="#010506"/>
+    </radialGradient>
+
+    <linearGradient id="pulseGreen" x1="330" y1="350" x2="820" y2="720" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#b7ff35"/>
+      <stop offset="38%" stop-color="#55ff3f"/>
+      <stop offset="68%" stop-color="#18e86d"/>
+      <stop offset="100%" stop-color="#17e9ff"/>
+    </linearGradient>
+
+    <linearGradient id="gridStroke" x1="340" y1="320" x2="850" y2="720" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#9cff28"/>
+      <stop offset="50%" stop-color="#2cff69"/>
+      <stop offset="100%" stop-color="#21eaff"/>
+    </linearGradient>
+
+    <linearGradient id="softText" x1="130" y1="800" x2="720" y2="800" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="55%" stop-color="#e8fff4"/>
+      <stop offset="100%" stop-color="#bfffe4"/>
+    </linearGradient>
+
+    <linearGradient id="pulseText" x1="700" y1="800" x2="1080" y2="800" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#b7ff35"/>
+      <stop offset="45%" stop-color="#3dff65"/>
+      <stop offset="100%" stop-color="#20eaff"/>
+    </linearGradient>
+
+    <filter id="greenGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="10" result="blur"/>
+      <feColorMatrix
+        in="blur"
+        type="matrix"
+        values="
+          0 0 0 0 0.15
+          0 0 0 0 1.00
+          0 0 0 0 0.45
+          0 0 0 0.9 0"
+        result="coloredBlur"
+      />
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="cyanGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="9" result="blur"/>
+      <feColorMatrix
+        in="blur"
+        type="matrix"
+        values="
+          0 0 0 0 0.00
+          0 0 0 0 0.95
+          0 0 0 0 1.00
+          0 0 0 0.8 0"
+        result="coloredBlur"
+      />
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="textGlow" x="-25%" y="-50%" width="150%" height="200%">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feColorMatrix
+        in="blur"
+        type="matrix"
+        values="
+          0 0 0 0 0.30
+          0 0 0 0 1.00
+          0 0 0 0 0.75
+          0 0 0 0.7 0"
+      />
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="1200" fill="url(#bg)"/>
+
+  <!-- Subtle circuit background -->
+  <g opacity="0.22" stroke="#16eaff" stroke-width="1.2" stroke-linecap="round">
+    <path d="M0 40L130 170H280"/>
+    <path d="M0 105L95 200H255"/>
+    <path d="M0 265H180L250 335H405"/>
+    <path d="M0 525H220L310 615H450"/>
+    <path d="M0 1050H190L280 960H430"/>
+
+    <path d="M1200 170H1065L985 250H820"/>
+    <path d="M1200 280H1085L1005 360H850"/>
+    <path d="M1200 530H1010L925 615H760"/>
+    <path d="M1200 1005H1010L920 915H760"/>
+  </g>
+
+  <g opacity="0.28" fill="#16eaff">
+    <circle cx="95" cy="128" r="6"/>
+    <circle cx="150" cy="242" r="6"/>
+    <circle cx="250" cy="335" r="7"/>
+    <circle cx="1085" cy="280" r="6"/>
+    <circle cx="1010" cy="530" r="7"/>
+    <circle cx="1115" cy="920" r="5"/>
+  </g>
+
+  <!-- Main grid emblem -->
+  <g filter="url(#greenGlow)">
+    <!-- Hexagonal network outline -->
+    <path
+      d="M600 280
+         L780 380
+         V610
+         L600 720
+         L420 610
+         V380
+         Z"
+      stroke="url(#gridStroke)"
+      stroke-width="4"
+      stroke-linejoin="round"
+      opacity="0.95"
+    />
+
+    <path
+      d="M465 405
+         L600 330
+         L735 405
+         V585
+         L600 665
+         L465 585
+         Z"
+      stroke="url(#gridStroke)"
+      stroke-width="2.5"
+      stroke-linejoin="round"
+      opacity="0.65"
+    />
+
+    <!-- Inner vertical lines -->
+    <path d="M600 280V720" stroke="url(#gridStroke)" stroke-width="2.5" opacity="0.8"/>
+    <path d="M420 380H465V585H420" stroke="#74ff35" stroke-width="2.5" opacity="0.8"/>
+    <path d="M780 380H735V585H780" stroke="#16eaff" stroke-width="2.5" opacity="0.8"/>
+
+    <!-- Inner diagonal links -->
+    <path d="M420 380L465 405" stroke="#7dff35" stroke-width="2.2" opacity="0.85"/>
+    <path d="M780 380L735 405" stroke="#16eaff" stroke-width="2.2" opacity="0.85"/>
+    <path d="M420 610L465 585" stroke="#7dff35" stroke-width="2.2" opacity="0.85"/>
+    <path d="M780 610L735 585" stroke="#16eaff" stroke-width="2.2" opacity="0.85"/>
+
+    <!-- Pulse line -->
+    <path
+      d="M300 500
+         H500
+         L530 455
+         L565 585
+         L620 380
+         L670 660
+         L705 500
+         H900"
+      stroke="url(#pulseGreen)"
+      stroke-width="22"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      filter="url(#greenGlow)"
+    />
+
+    <path
+      d="M300 500
+         H500
+         L530 455
+         L565 585
+         L620 380
+         L670 660
+         L705 500
+         H900"
+      stroke="#eaffb5"
+      stroke-width="6"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      opacity="0.9"
+    />
+
+    <!-- Horizontal pulse flares -->
+    <path
+      d="M285 500H420"
+      stroke="#78ff35"
+      stroke-width="3"
+      stroke-linecap="round"
+      opacity="0.85"
+      filter="url(#greenGlow)"
+    />
+    <path
+      d="M780 500H925"
+      stroke="#16eaff"
+      stroke-width="3"
+      stroke-linecap="round"
+      opacity="0.9"
+      filter="url(#cyanGlow)"
+    />
+
+    <!-- Nodes -->
+    <g>
+      <circle cx="600" cy="280" r="12" fill="#b7ff35" filter="url(#greenGlow)"/>
+      <circle cx="780" cy="380" r="12" fill="#16eaff" filter="url(#cyanGlow)"/>
+      <circle cx="780" cy="610" r="12" fill="#16eaff" filter="url(#cyanGlow)"/>
+      <circle cx="600" cy="720" r="12" fill="#25ff77" filter="url(#greenGlow)"/>
+      <circle cx="420" cy="610" r="12" fill="#8cff35" filter="url(#greenGlow)"/>
+      <circle cx="420" cy="380" r="12" fill="#8cff35" filter="url(#greenGlow)"/>
+
+      <circle cx="465" cy="405" r="7" fill="#7dff35"/>
+      <circle cx="735" cy="405" r="11" fill="#16eaff" filter="url(#cyanGlow)"/>
+      <circle cx="735" cy="585" r="11" fill="#16eaff" filter="url(#cyanGlow)"/>
+      <circle cx="465" cy="585" r="11" fill="#68ff35" filter="url(#greenGlow)"/>
+
+      <circle cx="600" cy="340" r="12" fill="#35ff91" filter="url(#greenGlow)"/>
+      <circle cx="600" cy="660" r="11" fill="#16eaff" filter="url(#cyanGlow)"/>
+      <circle cx="420" cy="500" r="11" fill="#66ff35" filter="url(#greenGlow)"/>
+      <circle cx="780" cy="500" r="11" fill="#16eaff" filter="url(#cyanGlow)"/>
+    </g>
+  </g>
+
+  <!-- Soft reflection -->
+  <ellipse
+    cx="600"
+    cy="875"
+    rx="430"
+    ry="28"
+    fill="#20ff85"
+    opacity="0.08"
+    filter="url(#greenGlow)"
+  />
+</svg>

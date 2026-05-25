@@ -1,0 +1,16 @@
+ <svg class="rb-brand-mark" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="bgl" x1="5" y1="6" x2="18" y2="30" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#d4fcd4"/>
+                <stop offset="55%" stop-color="#4ade80"/>
+                <stop offset="100%" stop-color="#22c55e"/>
+              </linearGradient>
+              <linearGradient id="bgr" x1="31" y1="6" x2="18" y2="30" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#22c55e"/>
+                <stop offset="100%" stop-color="#15803d"/>
+              </linearGradient>
+            </defs>
+            <polygon points="5,6 12,6 18,28 14,28" fill="url(#bgl)"/>
+            <polygon points="31,6 24,6 18,28 22,28" fill="url(#bgr)"/>
+            <line x1="9" y1="16" x2="13.5" y2="29" stroke="#bbf7d0" stroke-width="1.1" stroke-linecap="round" opacity="0.7"/>
+          </svg>
