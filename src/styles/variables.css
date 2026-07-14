@@ -1,56 +1,144 @@
 :root {
   color-scheme: light;
 
-  --sb-bg: #f3f3f3;
-  --sb-bg-soft: #fafafa;
-  --sb-bg-muted: #f6f6f6;
+  /*
+   * Foundations
+   */
 
-  --sb-surface: #ffffff;
-  --sb-surface-soft: #fafafa;
-  --sb-surface-muted: #f6f6f6;
+  --sb-bg: #f6f4f1;
+  --sb-bg-soft: #f0ede8;
+  --sb-bg-muted: #e9e5df;
 
-  --sb-border: #e2e2e2;
-  --sb-border-strong: #d2d2d2;
+  --sb-surface: #fffdfb;
+  --sb-surface-soft: #faf8f5;
+  --sb-surface-muted: #f2efea;
 
-  --sb-text: #1f1f1f;
-  --sb-text-soft: #5f6368;
-  --sb-text-muted: #80868b;
+  --sb-border: #ded9d2;
+  --sb-border-strong: #c9c2b9;
 
-  --sb-primary: #d86f1f;
-  --sb-primary-hover: #ad5117;
-  --sb-primary-soft: #fff5ed;
-  --sb-primary-border: #e9a16c;
+  /*
+   * Typography
+   */
 
-  --sb-cloud: #2768c7;
-  --sb-cloud-soft: #e8f0fd;
+  --sb-text: #202321;
+  --sb-text-soft: #5c625e;
+  --sb-text-muted: #858b87;
+  --sb-text-inverse: #fffaf5;
 
-  --sb-danger: #b3261e;
-  --sb-danger-soft: #fce8e6;
+  /*
+   * Softadastra brand
+   */
+
+  --sb-primary: #f97316;
+  --sb-primary-hover: #d9570b;
+  --sb-primary-strong: #b94308;
+
+  --sb-primary-soft: #fff0e5;
+  --sb-primary-muted: #fde2cf;
+  --sb-primary-border: #efb184;
+
+  /*
+   * Cloud aliases
+   *
+   * Cloud uses the Softadastra orange identity instead
+   * of introducing a second blue product color.
+   */
+
+  --sb-cloud: var(--sb-primary-hover);
+  --sb-cloud-soft: var(--sb-primary-soft);
+
+  /*
+   * Semantic colors
+   */
+
+  --sb-danger: #c2413b;
+  --sb-danger-soft: #fbe9e7;
+  --sb-danger-border: #e8aaa5;
+
   --sb-warning: #9a6700;
-  --sb-warning-soft: #fff8d8;
-  --sb-success: #2e7d32;
-  --sb-success-soft: #e8f5e9;
-  --sb-info: var(--sb-cloud);
-  --sb-info-soft: var(--sb-cloud-soft);
+  --sb-warning-soft: #fff4d6;
+  --sb-warning-border: #e5c66f;
 
-  --sb-font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Helvetica, Arial, sans-serif;
-  --sb-font-mono: Menlo, Consolas, "SFMono-Regular", "DejaVu Sans Mono", "Liberation Mono", monospace;
+  --sb-success: #238636;
+  --sb-success-soft: #e8f5eb;
+  --sb-success-border: #9bd4a5;
 
-  --sb-container: 1120px;
-  --sb-header-height: 58px;
-  --sb-dashboard-sidebar: 280px;
-  --sb-dashboard-topbar: 72px;
+  --sb-info: #356fa8;
+  --sb-info-soft: #eaf2fa;
+  --sb-info-border: #a9c8e5;
 
-  --sb-radius-xs: 5px;
+  /*
+   * Code and terminal surfaces
+   */
+
+  --sb-code-bg: #171a18;
+  --sb-code-surface: #202420;
+  --sb-code-border: #303530;
+  --sb-code-text: #f3f4f1;
+  --sb-code-muted: #919891;
+
+  /*
+   * Focus
+   */
+
+  --sb-focus-ring: rgba(249, 115, 22, 0.28);
+  --sb-focus-border: #f97316;
+
+  /*
+   * Typography families
+   */
+
+  --sb-font-sans:
+    Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Helvetica, Arial, sans-serif;
+
+  --sb-font-mono:
+    "SFMono-Regular", "Cascadia Code", "Roboto Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+
+  /*
+   * Layout
+   */
+
+  --sb-container: 1240px;
+  --sb-content: 760px;
+
+  --sb-header-height: 64px;
+  --sb-dashboard-sidebar: 272px;
+  --sb-dashboard-topbar: 68px;
+
+  /*
+   * Radius
+   */
+
+  --sb-radius-xs: 4px;
   --sb-radius-sm: 7px;
   --sb-radius-md: 10px;
-  --sb-radius-lg: 12px;
-  --sb-radius-xl: 16px;
+  --sb-radius-lg: 14px;
+  --sb-radius-xl: 20px;
   --sb-radius-full: 999px;
 
-  --sb-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04), 0 8px 24px rgba(0, 0, 0, 0.05);
-  --sb-shadow-md: 0 1px 2px rgba(0, 0, 0, 0.05), 0 14px 40px rgba(0, 0, 0, 0.07);
-  --sb-shadow-lg: 0 1px 2px rgba(0, 0, 0, 0.06), 0 18px 52px rgba(0, 0, 0, 0.08);
+  /*
+   * Shadows
+   *
+   * Kept intentionally subtle. Structure should come
+   * primarily from borders, spacing, and typography.
+   */
+
+  --sb-shadow-xs: 0 1px 1px rgba(32, 35, 33, 0.03);
+
+  --sb-shadow-sm:
+    0 1px 2px rgba(32, 35, 33, 0.04), 0 6px 18px rgba(32, 35, 33, 0.035);
+
+  --sb-shadow-md:
+    0 1px 2px rgba(32, 35, 33, 0.045), 0 12px 30px rgba(32, 35, 33, 0.05);
+
+  --sb-shadow-lg:
+    0 2px 4px rgba(32, 35, 33, 0.05), 0 18px 46px rgba(32, 35, 33, 0.06);
+
+  /*
+   * Spacing
+   */
 
   --sb-space-1: 4px;
   --sb-space-2: 8px;
@@ -58,13 +146,43 @@
   --sb-space-4: 16px;
   --sb-space-5: 20px;
   --sb-space-6: 24px;
+  --sb-space-7: 28px;
   --sb-space-8: 32px;
   --sb-space-10: 40px;
   --sb-space-12: 48px;
+  --sb-space-14: 56px;
   --sb-space-16: 64px;
   --sb-space-20: 80px;
   --sb-space-24: 96px;
+  --sb-space-28: 112px;
+  --sb-space-32: 128px;
+
+  /*
+   * Motion
+   */
 
   --sb-transition-fast: 120ms ease;
   --sb-transition-base: 180ms ease;
+  --sb-transition-slow: 260ms ease;
+}
+
+@media (max-width: 1280px) {
+  :root {
+    --sb-container: 1160px;
+  }
+}
+
+@media (max-width: 1024px) {
+  :root {
+    --sb-header-height: 60px;
+    --sb-dashboard-sidebar: 248px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --sb-transition-fast: 0ms;
+    --sb-transition-base: 0ms;
+    --sb-transition-slow: 0ms;
+  }
 }
