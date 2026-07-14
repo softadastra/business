@@ -1,66 +1,57 @@
 :root {
-  /* Colors */
-  --sb-bg: #0e1117;
-  --sb-bg-soft: #0c0f15;
-  --sb-bg-muted: #161b25;
+  color-scheme: light;
 
-  --sb-surface: #11151d;
-  --sb-surface-soft: #161b25;
-  --sb-surface-muted: #1a1f2b;
+  --sb-bg: #f3f3f3;
+  --sb-bg-soft: #fafafa;
+  --sb-bg-muted: #f6f6f6;
 
-  --sb-border: rgba(255, 255, 255, 0.08);
-  --sb-border-strong: rgba(255, 255, 255, 0.14);
+  --sb-surface: #ffffff;
+  --sb-surface-soft: #fafafa;
+  --sb-surface-muted: #f6f6f6;
 
-  --sb-text: #f3f4f7;
-  --sb-text-soft: #cbd0db;
-  --sb-text-muted: #8b93a4;
+  --sb-border: #e2e2e2;
+  --sb-border-strong: #d2d2d2;
 
-  --sb-primary: #ff6a00;
-  --sb-primary-hover: #ff8a3c;
-  --sb-primary-soft: rgba(255, 106, 0, 0.12);
-  --sb-primary-border: rgba(255, 106, 0, 0.32);
+  --sb-text: #1f1f1f;
+  --sb-text-soft: #5f6368;
+  --sb-text-muted: #80868b;
 
-  --sb-dark: #0c0f15;
-  --sb-dark-soft: #11151d;
+  --sb-primary: #d86f1f;
+  --sb-primary-hover: #ad5117;
+  --sb-primary-soft: #fff5ed;
+  --sb-primary-border: #e9a16c;
 
-  --sb-danger: #ef4444;
-  --sb-danger-soft: rgba(239, 68, 68, 0.12);
+  --sb-cloud: #2768c7;
+  --sb-cloud-soft: #e8f0fd;
 
-  --sb-warning: #ff9a3c;
-  --sb-warning-soft: rgba(255, 154, 60, 0.12);
+  --sb-danger: #b3261e;
+  --sb-danger-soft: #fce8e6;
+  --sb-warning: #9a6700;
+  --sb-warning-soft: #fff8d8;
+  --sb-success: #2e7d32;
+  --sb-success-soft: #e8f5e9;
+  --sb-info: var(--sb-cloud);
+  --sb-info-soft: var(--sb-cloud-soft);
 
-  --sb-success: #34c759;
-  --sb-success-soft: rgba(52, 199, 89, 0.12);
+  --sb-font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Helvetica, Arial, sans-serif;
+  --sb-font-mono: Menlo, Consolas, "SFMono-Regular", "DejaVu Sans Mono", "Liberation Mono", monospace;
 
-  --sb-info: #6f87ff;
-  --sb-info-soft: rgba(111, 135, 255, 0.12);
-
-  /* Typography */
-  --sb-font-sans:
-    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-    "Segoe UI", sans-serif;
-  --sb-font-mono:
-    "JetBrains Mono", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
-
-  /* Layout */
-  --sb-container: 1180px;
-  --sb-header-height: 72px;
+  --sb-container: 1120px;
+  --sb-header-height: 58px;
   --sb-dashboard-sidebar: 280px;
   --sb-dashboard-topbar: 72px;
 
-  /* Radius */
-  --sb-radius-xs: 6px;
-  --sb-radius-sm: 10px;
-  --sb-radius-md: 14px;
-  --sb-radius-lg: 20px;
-  --sb-radius-xl: 28px;
+  --sb-radius-xs: 5px;
+  --sb-radius-sm: 7px;
+  --sb-radius-md: 10px;
+  --sb-radius-lg: 12px;
+  --sb-radius-xl: 16px;
+  --sb-radius-full: 999px;
 
-  /* Shadows */
-  --sb-shadow-sm: 0 12px 34px rgba(0, 0, 0, 0.22);
-  --sb-shadow-md: 0 22px 58px rgba(0, 0, 0, 0.32);
-  --sb-shadow-lg: 0 34px 90px rgba(0, 0, 0, 0.44);
+  --sb-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04), 0 8px 24px rgba(0, 0, 0, 0.05);
+  --sb-shadow-md: 0 1px 2px rgba(0, 0, 0, 0.05), 0 14px 40px rgba(0, 0, 0, 0.07);
+  --sb-shadow-lg: 0 1px 2px rgba(0, 0, 0, 0.06), 0 18px 52px rgba(0, 0, 0, 0.08);
 
-  /* Spacing */
   --sb-space-1: 4px;
   --sb-space-2: 8px;
   --sb-space-3: 12px;
@@ -74,7 +65,6 @@
   --sb-space-20: 80px;
   --sb-space-24: 96px;
 
-  /* Motion */
-  --sb-transition-fast: 150ms ease;
-  --sb-transition-base: 220ms ease;
+  --sb-transition-fast: 120ms ease;
+  --sb-transition-base: 180ms ease;
 }

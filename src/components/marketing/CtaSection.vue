@@ -1,28 +1,18 @@
 <template>
-  <section class="cta-section">
-    <div class="cta-section__inner">
-      <div class="cta-section__panel">
-        <div class="cta-section__content">
-          <span class="cta-section__label">In development</span>
-
-          <h2>{{ product.cta.title }}</h2>
-
-          <p>{{ product.cta.text }}</p>
-        </div>
-
-        <div class="cta-section__actions">
-          <BaseButton :to="product.cta.primaryAction.href" size="lg">
-            {{ product.cta.primaryAction.label }}
-          </BaseButton>
-
-          <BaseButton
-            :to="product.cta.secondaryAction.href"
-            variant="secondary"
-            size="lg"
-          >
-            {{ product.cta.secondaryAction.label }}
-          </BaseButton>
-        </div>
+  <section class="final-cta" id="cta">
+    <div class="sb-container final-cta__inner">
+      <p class="sb-eyebrow">Start here</p>
+      <h2>Organize your C++ projects with Softadastra Cloud.</h2>
+      <p>
+        Keep project metadata, private packages, lockfiles, build reports, and team access connected to the local Vix.cpp workflow.
+      </p>
+      <div class="final-cta__actions">
+        <BaseButton href="https://cloud.softadastra.com" size="lg">
+          Open Softadastra Cloud
+        </BaseButton>
+        <BaseButton href="https://vixcpp.com" variant="secondary" size="lg">
+          Explore Vix.cpp
+        </BaseButton>
       </div>
     </div>
   </section>
@@ -30,112 +20,55 @@
 
 <script setup>
 import BaseButton from "../ui/BaseButton.vue";
-import { product } from "../../data/product";
 </script>
 
 <style scoped>
-.cta-section {
-  border-bottom: 1px solid var(--sb-border);
+.final-cta {
+  padding: 72px 0 86px;
   background: var(--sb-bg);
 }
 
-.cta-section__inner {
-  width: min(100% - 48px, 1440px);
-  margin-inline: auto;
-  padding: 96px 0;
-}
-
-.cta-section__panel {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 48px;
-  align-items: end;
+.final-cta__inner {
+  max-width: 780px;
+  padding: 28px;
   border: 1px solid var(--sb-border);
-  border-radius: 22px;
-  padding: 38px;
+  border-radius: var(--sb-radius-xl);
   background: var(--sb-surface);
-  box-shadow: var(--sb-shadow-md);
+  text-align: center;
+  box-shadow: var(--sb-shadow-sm);
 }
 
-.cta-section__content {
-  max-width: 760px;
-}
-
-.cta-section__label {
-  display: inline-flex;
-  width: fit-content;
-  margin-bottom: 16px;
-  border: 1px solid var(--sb-primary-border);
-  border-radius: 999px;
-  padding: 6px 10px;
-  background: var(--sb-primary-soft);
-  color: var(--sb-primary);
-  font-family: var(--sb-font-mono);
-  font-size: 0.72rem;
-  font-weight: 800;
-  line-height: 1;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.cta-section h2 {
-  margin: 0;
+.final-cta h2 {
+  margin-top: 10px;
   color: var(--sb-text);
-  font-size: clamp(2rem, 3.6vw, 3.6rem);
-  font-weight: 820;
-  line-height: 1.02;
-  letter-spacing: -0.05em;
+  font-size: clamp(2rem, 3.8vw, 3.2rem);
+  font-weight: 720;
+  line-height: 1.08;
+  letter-spacing: -0.04em;
 }
 
-.cta-section p {
-  max-width: 680px;
-  margin-top: 18px;
+.final-cta p:not(.sb-eyebrow) {
+  max-width: 620px;
+  margin: 14px auto 0;
   color: var(--sb-text-soft);
-  font-size: 1rem;
   line-height: 1.7;
 }
 
-.cta-section__actions {
+.final-cta__actions {
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-end;
-  gap: 12px;
-}
-
-@media (max-width: 900px) {
-  .cta-section__inner {
-    padding: 72px 0;
-  }
-
-  .cta-section__panel {
-    grid-template-columns: 1fr;
-    gap: 28px;
-    align-items: start;
-    padding: 30px;
-  }
-
-  .cta-section__actions {
-    justify-content: flex-start;
-  }
+  gap: 10px;
+  justify-content: center;
+  margin-top: 24px;
 }
 
 @media (max-width: 620px) {
-  .cta-section__inner {
-    width: min(100% - 24px, 1440px);
-    padding: 56px 0;
+  .final-cta__inner {
+    padding: 22px;
   }
 
-  .cta-section__panel {
-    padding: 24px;
-  }
-
-  .cta-section__actions {
+  .final-cta__actions {
     flex-direction: column;
-    width: 100%;
-  }
-
-  .cta-section__actions :deep(.base-button) {
-    width: 100%;
   }
 }
 </style>

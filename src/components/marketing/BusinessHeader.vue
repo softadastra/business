@@ -4,45 +4,31 @@
       <RouterLink
         to="/"
         class="business-header__brand"
-        aria-label="Converdict home"
+        aria-label="Softadastra Cloud home"
         @click="closeMenu"
       >
-        <span class="business-header__mark" aria-hidden="true">
-          <svg viewBox="0 0 40 40" role="img">
-            <path
-              class="business-header__mark-frame"
-              d="M20 4L34 12V28L20 36L6 28V12L20 4Z"
-            />
-            <path
-              class="business-header__mark-check"
-              d="M12.5 20.5L18 26L28 15"
-            />
-          </svg>
-        </span>
-
+        <img class="business-header__mark" src="/logo.svg" alt="" aria-hidden="true" />
         <span class="business-header__brand-text">
-          <strong>Converdict</strong>
-          <span>Softadastra Business</span>
+          <strong>Softadastra Cloud</strong>
+          <span>Project operations for C++ teams</span>
         </span>
       </RouterLink>
 
       <nav class="business-header__nav" aria-label="Main navigation">
-        <RouterLink
+        <a
           v-for="item in marketingNavigation"
           :key="item.href"
-          :to="item.href"
+          :href="item.href"
+          :target="item.external ? '_blank' : undefined"
+          :rel="item.external ? 'noopener noreferrer' : undefined"
           class="business-header__nav-link"
         >
           {{ item.label }}
-        </RouterLink>
+        </a>
       </nav>
 
       <div class="business-header__actions">
-        <BaseButton
-          :to="marketingActions.primary.href"
-          variant="primary"
-          size="sm"
-        >
+        <BaseButton :href="marketingActions.primary.href" variant="primary" size="sm">
           {{ marketingActions.primary.label }}
         </BaseButton>
       </div>
@@ -61,23 +47,19 @@
 
     <div v-if="isMenuOpen" class="business-header__mobile">
       <div class="business-header__mobile-inner">
-        <RouterLink
+        <a
           v-for="item in marketingNavigation"
           :key="item.href"
-          :to="item.href"
+          :href="item.href"
+          :target="item.external ? '_blank' : undefined"
+          :rel="item.external ? 'noopener noreferrer' : undefined"
           class="business-header__mobile-link"
           @click="closeMenu"
         >
           {{ item.label }}
-        </RouterLink>
+        </a>
 
-        <BaseButton
-          :to="marketingActions.primary.href"
-          variant="primary"
-          size="md"
-          block
-          @click="closeMenu"
-        >
+        <BaseButton :href="marketingActions.primary.href" variant="primary" size="md" block>
           {{ marketingActions.primary.label }}
         </BaseButton>
       </div>
@@ -107,16 +89,14 @@ function closeMenu() {
   top: 0;
   z-index: 50;
   border-bottom: 1px solid var(--sb-border);
-  background: rgba(14, 17, 23, 0.94);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+  background: rgba(255, 255, 255, 0.94);
 }
 
 .business-header__inner {
   display: flex;
   align-items: center;
-  gap: 24px;
-  width: min(100% - 48px, 1440px);
+  gap: 20px;
+  width: min(100% - 48px, var(--sb-container));
   min-height: var(--sb-header-height);
   margin-inline: auto;
 }
@@ -124,38 +104,18 @@ function closeMenu() {
 .business-header__brand {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   flex: 0 0 auto;
-  min-width: max-content;
   color: var(--sb-text);
   text-decoration: none;
 }
 
 .business-header__mark {
-  display: inline-flex;
-  width: 38px;
-  height: 38px;
+  display: block;
+  width: 34px;
+  height: 34px;
   flex: 0 0 auto;
-}
-
-.business-header__mark svg {
-  width: 100%;
-  height: 100%;
-}
-
-.business-header__mark-frame {
-  fill: none;
-  stroke: var(--sb-text);
-  stroke-width: 3;
-  stroke-linejoin: round;
-}
-
-.business-header__mark-check {
-  fill: none;
-  stroke: var(--sb-primary);
-  stroke-width: 4;
-  stroke-linecap: round;
-  stroke-linejoin: round;
+  object-fit: contain;
 }
 
 .business-header__brand-text {
@@ -165,16 +125,16 @@ function closeMenu() {
 
 .business-header__brand-text strong {
   color: var(--sb-text);
-  font-size: 0.98rem;
-  font-weight: 820;
+  font-size: 0.96rem;
+  font-weight: 760;
   line-height: 1.05;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.02em;
 }
 
 .business-header__brand-text span {
   color: var(--sb-text-muted);
   font-size: 0.72rem;
-  font-weight: 650;
+  font-weight: 620;
   line-height: 1.2;
 }
 
@@ -182,7 +142,7 @@ function closeMenu() {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 4px;
+  gap: 3px;
   flex: 1 1 auto;
   min-width: 0;
 }
@@ -191,43 +151,38 @@ function closeMenu() {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: 36px;
-  border-radius: 9px;
-  padding: 0 12px;
-  color: var(--sb-text-muted);
-  font-size: 0.88rem;
-  font-weight: 680;
+  height: 34px;
+  border-radius: var(--sb-radius-sm);
+  padding: 0 10px;
+  color: var(--sb-text-soft);
+  font-size: 0.86rem;
+  font-weight: 650;
   line-height: 1;
   text-decoration: none;
   white-space: nowrap;
-  transition:
-    background var(--sb-transition-fast),
-    color var(--sb-transition-fast);
+  transition: background var(--sb-transition-fast), color var(--sb-transition-fast);
 }
 
-.business-header__nav-link:hover,
-.business-header__nav-link.router-link-active {
-  background: var(--sb-surface-muted);
+.business-header__nav-link:hover {
+  background: var(--sb-bg-muted);
   color: var(--sb-text);
 }
 
 .business-header__actions {
   display: flex;
   align-items: center;
-  gap: 10px;
   flex: 0 0 auto;
 }
 
 .business-header__menu-button {
   display: none;
-  width: 42px;
-  height: 42px;
+  width: 40px;
+  height: 40px;
   flex: 0 0 auto;
   border: 1px solid var(--sb-border);
-  border-radius: 12px;
+  border-radius: var(--sb-radius-sm);
   background: var(--sb-surface);
   color: var(--sb-text);
-  box-shadow: var(--sb-shadow-sm);
 }
 
 .business-header__menu-button span {
@@ -235,11 +190,9 @@ function closeMenu() {
   width: 18px;
   height: 2px;
   margin: 5px auto;
-  border-radius: 999px;
+  border-radius: var(--sb-radius-full);
   background: currentColor;
-  transition:
-    transform var(--sb-transition-fast),
-    opacity var(--sb-transition-fast);
+  transition: transform var(--sb-transition-fast), opacity var(--sb-transition-fast);
 }
 
 .business-header.is-open .business-header__menu-button span:first-child {
@@ -252,38 +205,33 @@ function closeMenu() {
 
 .business-header__mobile {
   border-top: 1px solid var(--sb-border);
-  background: #0c0f15;
+  background: var(--sb-surface);
 }
 
 .business-header__mobile-inner {
   display: grid;
   gap: 6px;
-  width: min(100% - 32px, 1440px);
+  width: min(100% - 32px, var(--sb-container));
   margin-inline: auto;
-  padding: 14px 0 18px;
+  padding: 12px 0 16px;
 }
 
 .business-header__mobile-link {
-  display: flex;
-  align-items: center;
-  min-height: 46px;
-  border-radius: 12px;
-  padding: 0 12px;
+  padding: 10px 12px;
+  border-radius: var(--sb-radius-sm);
   color: var(--sb-text-soft);
-  font-size: 0.96rem;
-  font-weight: 720;
+  font-weight: 650;
   text-decoration: none;
 }
 
-.business-header__mobile-link:hover,
-.business-header__mobile-link.router-link-active {
-  background: var(--sb-surface-muted);
+.business-header__mobile-link:hover {
+  background: var(--sb-bg-muted);
   color: var(--sb-text);
 }
 
-@media (max-width: 980px) {
+@media (max-width: 920px) {
   .business-header__inner {
-    width: min(100% - 36px, 1440px);
+    width: min(100% - 32px, var(--sb-container));
   }
 
   .business-header__nav,
@@ -292,31 +240,18 @@ function closeMenu() {
   }
 
   .business-header__menu-button {
-    display: inline-block;
+    display: block;
     margin-left: auto;
   }
 }
 
 @media (max-width: 520px) {
   .business-header__inner {
-    width: min(100% - 24px, 1440px);
-  }
-
-  .business-header__mark {
-    width: 36px;
-    height: 36px;
-  }
-
-  .business-header__brand {
-    gap: 10px;
+    width: min(100% - 24px, var(--sb-container));
   }
 
   .business-header__brand-text span {
     display: none;
-  }
-
-  .business-header__mobile-inner {
-    width: min(100% - 24px, 1440px);
   }
 }
 </style>

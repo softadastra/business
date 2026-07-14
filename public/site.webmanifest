@@ -1,14 +1,14 @@
 {
   "id": "/",
-  "name": "Softadastra",
-  "short_name": "Softadastra",
-  "description": "Softadastra helps applications keep working when networks fail with durable writes, sync engines, local-first infrastructure, runtimes, registries, and cloud reliability products.",
+  "name": "Softadastra Cloud",
+  "short_name": "Softadastra Cloud",
+  "description": "Softadastra Cloud organizes workspaces, private packages, lockfiles, build reports, permissions, and project metadata for teams building modern C++ applications with Vix.cpp.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait-primary",
-  "background_color": "#0b2b22",
-  "theme_color": "#0b2b22",
+  "background_color": "#f3f3f3",
+  "theme_color": "#f3f3f3",
   "icons": [
     {
       "src": "https://res.cloudinary.com/dwjbed2xb/image/upload/v1767987143/android-chrome-192x192_woo6gl.png",
@@ -17,22 +17,10 @@
       "purpose": "any"
     },
     {
-      "src": "https://res.cloudinary.com/dwjbed2xb/image/upload/v1767987143/android-chrome-192x192_woo6gl.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "maskable"
-    },
-    {
       "src": "https://res.cloudinary.com/dwjbed2xb/image/upload/v1767987144/android-chrome-512x512_yjmz55.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
-    },
-    {
-      "src": "https://res.cloudinary.com/dwjbed2xb/image/upload/v1767987144/android-chrome-512x512_yjmz55.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "maskable"
     }
   ]
 }

@@ -2,29 +2,17 @@
   <footer class="business-footer">
     <div class="business-footer__inner">
       <div class="business-footer__brand">
-        <RouterLink to="/" class="business-footer__logo">
-          <span class="business-footer__mark" aria-hidden="true">
-            <svg viewBox="0 0 40 40" role="img">
-              <path
-                class="business-footer__mark-frame"
-                d="M20 4L34 12V28L20 36L6 28V12L20 4Z"
-              />
-              <path
-                class="business-footer__mark-check"
-                d="M12.5 20.5L18 26L28 15"
-              />
-            </svg>
-          </span>
-
+        <RouterLink to="/" class="business-footer__logo" aria-label="Softadastra Cloud home">
+          <img class="business-footer__mark" src="/logo.svg" alt="" aria-hidden="true" />
           <span class="business-footer__logo-text">
-            <strong>Converdict</strong>
-            <small>Softadastra Business</small>
+            <strong>Softadastra Cloud</strong>
+            <small>Built by Softadastra</small>
           </span>
         </RouterLink>
 
         <p>
-          Reliability verification for distributed systems that must stay
-          correct under retries, timeouts, crashes, and unstable networks.
+          Softadastra Cloud is the project operations platform for modern C++ teams.
+          Softadastra is the C++ Tooling Company.
         </p>
       </div>
 
@@ -35,15 +23,13 @@
         :aria-label="group.title"
       >
         <h2>{{ group.title }}</h2>
-
         <a
           v-for="item in group.links"
           :key="item.href"
-          :href="item.external ? item.href : undefined"
+          :href="item.href"
           :target="item.external ? '_blank' : undefined"
-          :rel="item.external ? 'noreferrer' : undefined"
+          :rel="item.external ? 'noopener noreferrer' : undefined"
           class="business-footer__link"
-          @click.prevent="!item.external && goTo(item.href)"
         >
           {{ item.label }}
         </a>
@@ -52,39 +38,31 @@
 
     <div class="business-footer__bottom">
       <p>© {{ currentYear }} Softadastra. All rights reserved.</p>
-      <p>Converdict is currently in development.</p>
+      <p>business.softadastra.com is the product website. cloud.softadastra.com is the application.</p>
     </div>
   </footer>
 </template>
 
 <script setup>
 import { computed } from "vue";
-import { useRouter } from "vue-router";
 import { footerNavigation } from "../../data/navigation";
 
-const router = useRouter();
-
 const currentYear = computed(() => new Date().getFullYear());
-
-function goTo(href) {
-  router.push(href);
-}
 </script>
 
 <style scoped>
 .business-footer {
   border-top: 1px solid var(--sb-border);
-  background: #0c0f15;
+  background: var(--sb-surface);
 }
 
 .business-footer__inner {
   display: grid;
-  grid-template-columns: minmax(0, 1.5fr) repeat(2, minmax(160px, 0.5fr));
-  gap: 48px;
-  width: min(100% - 48px, 1440px);
+  grid-template-columns: minmax(0, 1.4fr) repeat(2, minmax(160px, 0.5fr));
+  gap: 42px;
+  width: min(100% - 48px, var(--sb-container));
   margin-inline: auto;
-  padding-top: 56px;
-  padding-bottom: 42px;
+  padding: 46px 0 34px;
 }
 
 .business-footer__brand {
@@ -94,36 +72,17 @@ function goTo(href) {
 .business-footer__logo {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   color: var(--sb-text);
   text-decoration: none;
 }
 
 .business-footer__mark {
-  display: inline-flex;
-  width: 38px;
-  height: 38px;
+  display: block;
+  width: 34px;
+  height: 34px;
   flex: 0 0 auto;
-}
-
-.business-footer__mark svg {
-  width: 100%;
-  height: 100%;
-}
-
-.business-footer__mark-frame {
-  fill: none;
-  stroke: var(--sb-text);
-  stroke-width: 3;
-  stroke-linejoin: round;
-}
-
-.business-footer__mark-check {
-  fill: none;
-  stroke: var(--sb-primary);
-  stroke-width: 4;
-  stroke-linecap: round;
-  stroke-linejoin: round;
+  object-fit: contain;
 }
 
 .business-footer__logo-text {
@@ -134,57 +93,49 @@ function goTo(href) {
 .business-footer__logo strong {
   color: var(--sb-text);
   font-size: 0.98rem;
-  font-weight: 820;
+  font-weight: 760;
   line-height: 1.05;
-  letter-spacing: -0.03em;
 }
 
 .business-footer__logo small {
   color: var(--sb-text-muted);
   font-size: 0.72rem;
-  font-weight: 650;
-  line-height: 1.2;
+  font-weight: 620;
 }
 
 .business-footer__brand p {
-  max-width: 420px;
-  margin-top: 18px;
-  color: var(--sb-text-muted);
+  max-width: 430px;
+  margin-top: 16px;
+  color: var(--sb-text-soft);
   font-size: 0.94rem;
-  line-height: 1.7;
+  line-height: 1.65;
 }
 
 .business-footer__group {
   display: grid;
   align-content: start;
-  gap: 10px;
+  gap: 9px;
 }
 
 .business-footer__group h2 {
-  margin: 0 0 8px;
+  margin: 0 0 7px;
   color: var(--sb-text);
   font-size: 0.76rem;
-  font-weight: 800;
-  line-height: 1;
-  letter-spacing: 0.06em;
+  font-weight: 760;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
 }
 
 .business-footer__link {
   width: fit-content;
-  color: var(--sb-text-muted);
+  color: var(--sb-text-soft);
   font-size: 0.9rem;
-  font-weight: 650;
-  line-height: 1.4;
+  font-weight: 620;
   text-decoration: none;
-  transition:
-    color var(--sb-transition-fast),
-    transform var(--sb-transition-fast);
 }
 
 .business-footer__link:hover {
-  color: var(--sb-primary);
-  transform: translateX(2px);
+  color: var(--sb-primary-hover);
 }
 
 .business-footer__bottom {
@@ -192,11 +143,10 @@ function goTo(href) {
   align-items: center;
   justify-content: space-between;
   gap: 18px;
-  width: min(100% - 48px, 1440px);
+  width: min(100% - 48px, var(--sb-container));
   margin-inline: auto;
   border-top: 1px solid var(--sb-border);
-  padding-top: 20px;
-  padding-bottom: 24px;
+  padding: 18px 0 22px;
 }
 
 .business-footer__bottom p {
@@ -206,35 +156,20 @@ function goTo(href) {
 }
 
 @media (max-width: 820px) {
+  .business-footer__inner,
+  .business-footer__bottom {
+    width: min(100% - 32px, var(--sb-container));
+  }
+
   .business-footer__inner {
     grid-template-columns: 1fr;
-    gap: 32px;
-    width: min(100% - 36px, 1440px);
-    padding-top: 44px;
-    padding-bottom: 34px;
+    gap: 28px;
   }
 
   .business-footer__bottom {
     align-items: flex-start;
     flex-direction: column;
     gap: 8px;
-    width: min(100% - 36px, 1440px);
-  }
-}
-
-@media (max-width: 520px) {
-  .business-footer__inner,
-  .business-footer__bottom {
-    width: min(100% - 24px, 1440px);
-  }
-
-  .business-footer__mark {
-    width: 36px;
-    height: 36px;
-  }
-
-  .business-footer__brand p {
-    font-size: 0.92rem;
   }
 }
 </style>

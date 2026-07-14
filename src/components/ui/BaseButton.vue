@@ -5,6 +5,8 @@
     :to="isRouterLink ? to : undefined"
     :type="isButton ? type : undefined"
     :disabled="isButton ? disabled : undefined"
+    :target="isExternal ? '_blank' : undefined"
+    :rel="isExternal ? 'noopener noreferrer' : undefined"
     :class="[
       'base-button',
       `base-button--${variant}`,
@@ -60,6 +62,7 @@ const props = defineProps({
 const isRouterLink = computed(() => Boolean(props.to));
 const isLink = computed(() => Boolean(props.href) && !isRouterLink.value);
 const isButton = computed(() => !isLink.value && !isRouterLink.value);
+const isExternal = computed(() => isLink.value && /^https?:\/\//.test(props.href));
 
 const tag = computed(() => {
   if (isRouterLink.value) {
@@ -82,13 +85,16 @@ const tag = computed(() => {
   width: auto;
   border: 1px solid transparent;
   border-radius: var(--sb-radius-sm);
-  font-weight: 750;
+  font-weight: 700;
   line-height: 1;
   text-decoration: none;
   white-space: nowrap;
-  transition: background var(--sb-transition-fast),
-    border-color var(--sb-transition-fast), color var(--sb-transition-fast),
-    transform var(--sb-transition-fast);
+  transition:
+    background var(--sb-transition-fast),
+    border-color var(--sb-transition-fast),
+    color var(--sb-transition-fast),
+    transform var(--sb-transition-fast),
+    box-shadow var(--sb-transition-fast);
 }
 
 .base-button:hover {
@@ -119,32 +125,33 @@ const tag = computed(() => {
 }
 
 .base-button--lg {
-  min-height: 50px;
-  padding: 0 22px;
-  font-size: 1rem;
+  min-height: 48px;
+  padding: 0 20px;
+  font-size: 0.98rem;
 }
 
 .base-button--primary {
-  border-color: var(--sb-primary-border);
+  border-color: var(--sb-primary);
   background: var(--sb-primary);
-  color: #04130e;
+  color: #ffffff;
+  box-shadow: 0 1px 2px rgba(173, 81, 23, 0.16);
 }
 
 .base-button--primary:hover {
-  border-color: rgba(47, 212, 156, 0.6);
-  background: #5ce3b6;
-  color: #04130e;
+  border-color: var(--sb-primary-hover);
+  background: var(--sb-primary-hover);
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(173, 81, 23, 0.18);
 }
 
 .base-button--secondary {
-  border-color: var(--sb-border);
-  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--sb-border-strong);
+  background: var(--sb-surface);
   color: var(--sb-text);
 }
 
 .base-button--secondary:hover {
-  border-color: var(--sb-border-strong);
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--sb-bg-muted);
 }
 
 .base-button--ghost {
@@ -154,7 +161,7 @@ const tag = computed(() => {
 }
 
 .base-button--ghost:hover {
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--sb-bg-muted);
   color: var(--sb-text);
 }
 

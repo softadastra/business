@@ -2,7 +2,7 @@
   "name": "softadastra-business",
   "version": "0.1.0",
   "private": true,
-  "description": "Softadastra Business website for Converdict.",
+  "description": "Softadastra Cloud product website for project operations in modern C++ teams.",
   "type": "module",
   "scripts": {
     "dev": "vite --host 0.0.0.0",

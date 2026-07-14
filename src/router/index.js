@@ -1,11 +1,9 @@
 import { createRouter, createWebHistory } from "vue-router";
 
 import MarketingLayout from "../layouts/MarketingLayout.vue";
-
 import HomePage from "../pages/marketing/HomePage.vue";
-import ProductPage from "../pages/marketing/ProductPage.vue";
-import DocsPage from "../pages/marketing/DocsPage.vue";
-import ContactPage from "../pages/marketing/ContactPage.vue";
+
+const siteTitle = "Softadastra Cloud | Project operations for modern C++ teams";
 
 const routes = [
   {
@@ -17,32 +15,20 @@ const routes = [
         name: "home",
         component: HomePage,
         meta: {
-          title: "Converdict - Softadastra Business",
+          title: siteTitle,
         },
       },
       {
         path: "product",
-        name: "product",
-        component: ProductPage,
-        meta: {
-          title: "Product - Converdict",
-        },
+        redirect: { path: "/", hash: "#product" },
       },
       {
         path: "docs",
-        name: "docs",
-        component: DocsPage,
-        meta: {
-          title: "Docs - Converdict",
-        },
+        redirect: { path: "/", hash: "#workflow" },
       },
       {
         path: "contact",
-        name: "contact",
-        component: ContactPage,
-        meta: {
-          title: "Contact - Converdict",
-        },
+        redirect: { path: "/", hash: "#cta" },
       },
     ],
   },
@@ -55,7 +41,14 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(),
   routes,
-  scrollBehavior() {
+  scrollBehavior(to) {
+    if (to.hash) {
+      return {
+        el: to.hash,
+        top: 72,
+      };
+    }
+
     return {
       top: 0,
     };
@@ -63,7 +56,7 @@ const router = createRouter({
 });
 
 router.afterEach((to) => {
-  document.title = to.meta.title || "Converdict - Softadastra Business";
+  document.title = to.meta.title || siteTitle;
 });
 
 export default router;
